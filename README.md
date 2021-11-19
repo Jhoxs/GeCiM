@@ -1,2 +1,2 @@
 # GeCiM
-Servicio de citas médicas
+Servicio Gestor de Citas Médicas
