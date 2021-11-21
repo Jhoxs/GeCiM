@@ -1,0 +1,130 @@
+body,html{
+    height: 100%;
+}
+@media  screen and (max-width: 528px) {
+    body {
+      backdrop-filter: blur(1.5rem);
+      justify-content: center;
+      transition: 0.1s;
+    }
+    
+    
+  }
+
+@media only screen and(max-width:425) {
+    div{
+        width: auto;
+    }
+}
+body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url(../resources/fondo-min.jpg) no-repeat center fixed;
+    background-size: cover;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: right;
+    align-items: center;
+    overflow: hidden;
+    
+}
+
+#mensaje-error{
+    color: #F25252;
+    font-weight: 500px;
+}
+.separador{
+    color: white;
+    width: 90%;
+    align-self:center;
+    margin-bottom: 40px;
+    
+}
+.form-ingreso{
+    background-color: #011126;
+    width: 440px;
+    padding: 40px;
+    height: 100%;
+    text-align: center;
+}
+.form-title{
+    color: white;
+    font-weight: 530;
+    text-align: center;
+}
+.form-p{
+    border: 0;
+    color:white;
+    text-align:left;
+    font-size: 15px;
+    
+}
+.form-ingreso input[type="text"],
+.form-ingreso input[type="email"],
+.form-ingreso input[type="password"],
+.form-ingreso input[type="submit"],
+.form-ingreso button{
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    padding: 14px 10px;
+    text-align: center;
+    border: 2px solid white;
+    color:white;
+    /*width: 250px;*/
+    width: 60%;
+    outline: none;
+    border-radius: 10px;
+    transition: 0.25s;
+}
+
+
+.form-ingreso input[type="text"]:focus,
+.form-ingreso input[type="email"]:focus,
+.form-ingreso input[type="password"]:focus{
+    width: 69%;
+    border-color: white;
+}
+
+.form-ingreso input[type="submit"]{
+    background: white;
+    color: #011126;
+    width: 65%;
+    cursor: pointer;
+}
+
+.form-ingreso input[type="submit"]:hover{
+    background:#000B20;
+    color: white;
+}
+
+
+.form-ingreso button{
+    background: #F2B705;
+    color: #011126;
+    width: 48%;
+    cursor: pointer;
+}
+
+.form-ingreso button:hover{
+    background:#F25C5C;
+    color: white;
+}
+.form-ingreso button:active{
+    background: white;
+    color: #011126;
+}
+
+
+.form-ingreso a:link{
+    color:#F2CB05;
+}
+.form-ingreso a:visited{
+    color: #F25252;
+}
+.form-ingreso a:hover{
+    color: white;
+}
