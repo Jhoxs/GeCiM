@@ -20,14 +20,15 @@ body{
     background: url(../resources/fondo-min-min.jpg) no-repeat center;
     background-color: #e4e4e4 ;
     background-size: contain;
-    backdrop-filter: blur(1.5rem);
+    /*backdrop-filter: blur(1.5rem);*/
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    overflow: auto;/*elimina la barra de la derecha*/   
+    overflow: auto;
 }
+
 .form-registro{
     border-style:  outset;
     border-radius: 5px;
