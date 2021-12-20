@@ -2,7 +2,6 @@ const express = require ('express');
 const morgan = require('morgan');
 const path = require ('path');
 const { engine } = require('express-handlebars');
-//import {engine} from 'express-handlebars';
 const session = require('express-session');
 const validator = require('express-validator'); 
 const passport = require('passport');
@@ -44,22 +43,24 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
 //crea una sesion local
-app.use(session({
-    secret: 'mysqlnodemysql',
-    resave: false,
-    saveUninitialized: false,
-    store: new MySQLStore(database)
-  }));
-//--nos permite usar alertas en caso de algun error 
+app.use(
+    session({
+      secret: "mysqlnodemysql",
+      resave: false,
+      saveUninitialized: false,
+      store: new MySQLStore(database),
+    })
+  );
+//flash nos permite usar alertas en caso de algun error 
 app.use(flash());
-
-//app.use(passport.initialize());
-//app.use(passport.session());
+app.use(passport.initialize());
+app.use(passport.session());
 //app.use(validator());
 
 
 //Variables Globales
 app.use((req,res,next) => {
+    //hace uso de la libreria flash para mandar mensajes de confirmacion, u otros mensajes
     app.locals.message = req.flash('message');
     app.locals.success = req.flash('success');
     app.locals.user = req.user;

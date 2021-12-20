@@ -1,11 +1,13 @@
+
+<div class=cont-login>
  <div class=form-ingreso>
-        <form action="#" method="post">
+        <form action="/login" method="post">
             <h1 class="form-title">Agendador de citas médicas</h1>
             <hr class="separador">
             <p class="form-p">Para agendar su cita ingrese con su correo y contraseña:</p>
             
-            <input type="email" id="texto" name="correoUsuario" placeholder="Correo Electronico" maxlength="30" title="Ingresa un correo Electronico" required>
-            <input type="password" id="pass" name="contraseña" placeholder="Contraseña" title="Ingresa una contraseña" maxlength="30" required>
+            <input type="email" id="texto" name="correo" placeholder="Correo Electronico" maxlength="30" title="Ingresa un correo Electronico" required>
+            <input type="password" id="pass" name="clave" placeholder="Contraseña" title="Ingresa una contraseña" maxlength="30" required>
             <input type="submit" value="Iniciar Sesión"/>
             <p class="form-p" style="text-align: center;" >¿Olvidaste tu contraseña?, Ingresa <a href="https://www.google.com">aquí</a></p>
             <footer id="mensaje-error"></footer>
@@ -13,4 +15,7 @@
            
         </form>
         <button onclick="location.href='/registro'">Crear cuenta</button>
+        
 </div>
+</div>
+

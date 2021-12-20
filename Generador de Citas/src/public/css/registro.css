@@ -10,17 +10,18 @@ body,html{
         
     }
 }
-
 html {
     font-family: "Lucida Sans", sans-serif;
 }
 body{
     margin: 0;
     padding: 0;
-    background: url(../resources/fondo-min-min.jpg) no-repeat center;
     background-color: #e4e4e4 ;
     background-size: contain;
-    /*backdrop-filter: blur(1.5rem);*/
+    overflow: auto;
+}
+.cont-registro{
+    backdrop-filter: blur(1.5rem);
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -28,14 +29,13 @@ body{
     align-items: center;
     overflow: auto;
 }
-
 .form-registro{
     border-style:  outset;
     border-radius: 5px;
     padding: 30px 25px 40px 25px;
     background-color: none;
 }
-.form-p{
+.form-p-registro{
     border:0;
     margin-top: 2px;
     margin-bottom:0; 
@@ -49,6 +49,9 @@ body{
     color: black;
 }
 /*cuadros de texto*/
+#fapellido{
+    margin-right: 15px;
+}
 .form-registro input[type="text"],
 .form-registro input[type="email"],
 .form-registro input[type="tel"],
@@ -81,7 +84,6 @@ body{
     border-radius: 8px;
     border: 2px solid white;
 }
-
 .conts{
     border:0;
     padding: 10px auto;

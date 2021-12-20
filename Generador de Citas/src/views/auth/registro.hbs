@@ -1,3 +1,5 @@
+ {{>navbar}}
+ <div class=cont-registro>
  <div class=form-registro >
         <form action="/registro" method="post">
             <h1 class="form-titulo" >Registro</h1>
@@ -11,10 +13,10 @@
             <input type="password" id=fpass name="clave" placeholder="Contraseña" maxlength="30" required><br>
             <input type="password" id=fpass1 name="repass" placeholder="Repetir la contraseña" maxlength="30" required><br>
             <hr>
-            <p class="form-p">Fecha de nacimiento:</p>
+            <p class="form-p-registro">Fecha de nacimiento:</p>
             <input id=fechaN type="date" name="nacimiento"  min="1910-00-00" max="2022-31-31" required>
             
-            <p class="form-p">Sexo:</p>
+            <p class="form-p-registro">Sexo:</p>
             <button id="fsex" type="button"> <!--disabled-->
                 Hombre
                 <input id=h type="radio" name="sexo" value="Hombre">
@@ -31,8 +33,9 @@
             <hr >
             
     
-            <button onclick="location.href='/'" type="button">Atras</button>
+            <button onclick="location.href='/login'" type="button">Atras</button>
             <button type="submit">Aceptar</button>
     
         </form>
     </div>
+ </div>

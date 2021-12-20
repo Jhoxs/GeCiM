@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
+//landing
 router.get('/' , async (req, res)=>{
-    res.render('index');
+    res.render('index',{title:'GeCim'});
 });
 
 

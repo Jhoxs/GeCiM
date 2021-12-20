@@ -1,12 +1,14 @@
+
 body{
-  background: #f5f6fa;
+  background: #e4e4e4 ;
   font-family: 'Oswald', sans-serif;
-  overflow: hidden;
+  
 }
 
 .index {
-    width: 100vw;
+    width: 98vw;
     height: 100vh;
+    overflow: hidden;
 }
 
 .navbar {
@@ -28,14 +30,19 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
 }
+.btn-primary{
+  background-color: #06c4e6;
+  border-color: #06c4e6;
+}
 
 .masthead h1 {
     font-size: 4rem;
     margin: 0;
     padding: 0;
   }
+
   
-  @media (min-width: 992px) {
+@media (min-width: 992px) {
     .masthead {
       height: 100vh;
     }

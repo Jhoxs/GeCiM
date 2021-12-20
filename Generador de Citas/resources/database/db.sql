@@ -6,7 +6,7 @@ CREATE TABLE usuario(
     nombre varchar(30) NOT NULL,
     apellido varchar(30) NOT NULL,
     cedula int (10) NOT NULL,
-    correo varchar(30) NOT NULL,
+    correo varchar(30) NOT NULL UNIQUE, /*el correo debe de ser unico*/
     telefono int (10) NOT NULL,
     clave varchar(30) NOT NULL,
     /*fecha nacimiento*/
