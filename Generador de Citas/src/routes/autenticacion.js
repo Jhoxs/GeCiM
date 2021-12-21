@@ -10,6 +10,9 @@ const { isLoggedIn } = require('../lib/auth');
 router.get('/registro',(req,res)=>{
     res.render('auth/registro',{title:'registro'});
 });
+router.get('/registro',isLoggedIn,(req,res)=>{
+    res.redirect('/inicio');
+});
 
 router.post('/registro', passport.authenticate('local.registro',{
     successRedirect: '/inicio',

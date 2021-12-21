@@ -4,9 +4,13 @@ const router = express.Router();
 const pool = require('../database');
 const { isLoggedIn } = require('../lib/auth');
 
-router.get('/add',(req,res)=>{
-    res.send('Prueba Exitosa');
+
+router.get('/addTurno',isLoggedIn,(req,res)=>{
+    res.send('Mostrar Turnos');
 });
 
+router.get('/verTurno',(req,res)=>{
+    res.send('Ver Turnos');
+});
 
 module.exports = router;

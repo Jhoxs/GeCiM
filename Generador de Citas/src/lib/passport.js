@@ -21,8 +21,9 @@ async(req,correo,clave,done)=>{
         //guarda el correo en la tabla user
         const user = rows[0];
         console.log(user);
+        console.log(user.clave);
         //valida el password por medio de la funcion que se encuentra en helpers
-        const validarPass = await helpers.compararPassword(clave, user.clave);
+        const validarPass = await helpers.compararPassword(clave,user.clave);
         console.log('Valid Pass: '+validarPass);
         if(validarPass){
             console.log('valido');
@@ -64,7 +65,7 @@ passport.use('local.registro',new LocalStrategy({
     const resultado = await pool.query('INSERT INTO usuario SET ?',nuevoUsuario);
     
     //nuevoUsuario.cedula = resultado.cedula;
-    console.log(resultado.cedula);
+    console.log(resultado);
     console.log('El usuario se registro en la base de datos');
     return done(null,nuevoUsuario);
 }));
