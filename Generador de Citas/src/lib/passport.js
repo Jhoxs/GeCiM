@@ -58,30 +58,24 @@ passport.use('local.registro',new LocalStrategy({
 
     //Encriptamos la clave del usuario
     nuevoUsuario.clave = await helpers.encriptarPassword(clave);
-    console.log(nuevoUsuario);
-    console.log(nuevoUsuario.clave);
+
+    //Guardamos los datos en la bd
     const resultado = await pool.query('INSERT INTO usuario SET ?',nuevoUsuario);
-    
-    //nuevoUsuario.cedula = resultado.cedula;
     console.log(resultado);
+    console.log('---------');
+    console.log(resultado.insertCedula);
     console.log('El usuario se registro en la base de datos');
     return done(null,nuevoUsuario);
 }));
 
-
-
+//serializacion del usuario
 passport.serializeUser((user, done) => {
-    console.log(user.id);
-    done(null, user);
+    done(null, user.cedula);
 
-  });
+});
 
-//deserializar el usuario
-/*passport.deserializeUser(async(cedula,done)=>{
-    const rows = await pool.query('SELECT * FORM usuario WHERE cedula = ?',[cedula]);
-    done (null, rows[0]);
-});*/
-
-passport.deserializeUser(function(user, done) {
-    done(null, user);
+//deserializacion del usuario
+passport.deserializeUser(async(cedula, done) => {
+    const rows = await pool.query('SELECT * FROM usuario WHERE cedula = ?',[cedula]);
+    done(null, rows[0]);
   });

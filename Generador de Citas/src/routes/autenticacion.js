@@ -25,7 +25,7 @@ router.get('/login',isNotLoggedIn,(req,res)=>{
 });
 
 router.post('/login',(req,res,next)=>{
-    //Valida que el correo sea ingresado
+    //Valida que el correo sea ingresado validacion con validator
     //req.check('correo','El correo es requerido').notEmpty();
     //req.check('clave','La contraseña es requerida').notEmpty();
     //const errores = req.ValidationErrors();

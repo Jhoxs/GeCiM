@@ -22,7 +22,7 @@ require('./lib/passport');
 //Configuraciones
 app.set('port', process.env.PORT||3000);
 app.set('views', path.join(__dirname, '/views'));
-//implementacion con plantillaa hbs -- pendiente
+//implementacion con plantillaa hbs
 app.engine('hbs', engine ({
     defaultLayout: 'main',
     layoutsDir: path.join(app.get('views'), 'layouts'),
@@ -71,7 +71,7 @@ app.use((req,res,next) => {
 //Rutas
 app.use(require('./routes/index'));
 app.use(require('./routes/autenticacion'));
-app.use('/links',require('./routes/links'));
+app.use('/turnos',require('./routes/turnos'));
 
 
 //StaticFiles (public)
