@@ -5,18 +5,24 @@ body,html{
     body {
       backdrop-filter: blur(1.5rem);
       justify-content: center;
+      height: auto;
       transition: 0.1s;
     }
-  }
-  .cont-login{
-      overflow: scroll;
-  }
+
+    #frm-ing{
+        height: auto;
+    }
+}
+
+
+
 
 @media only screen and(max-width:425) {
     div{
-        width: auto;
+        overflow: scroll;
     }
 }
+
 body{
     margin: 0;
     padding: 0;
@@ -30,8 +36,9 @@ body{
     flex-wrap: wrap;
     justify-content: right;
     align-items: center;
-    overflow: hidden;
+    overflow: auto;
     height: 100%;
+    
 }
 #mensaje-error{
     color: #F25252;
@@ -130,3 +137,4 @@ body{
 .form-ingreso a:hover{
     color: white;
 }
+
