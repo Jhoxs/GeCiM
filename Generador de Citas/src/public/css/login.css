@@ -8,6 +8,9 @@ body,html{
       transition: 0.1s;
     }
   }
+  .cont-login{
+      overflow: scroll;
+  }
 
 @media only screen and(max-width:425) {
     div{

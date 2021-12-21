@@ -4,12 +4,12 @@ const router = express.Router();
 const pool = require('../database');
 const { isLoggedIn } = require('../lib/auth');
 
-
+//estas rutas usan /link/addTurno
 router.get('/addTurno',isLoggedIn,(req,res)=>{
     res.send('Mostrar Turnos');
 });
 
-router.get('/verTurno',(req,res)=>{
+router.get('/verTurno',isLoggedIn,(req,res)=>{
     res.send('Ver Turnos');
 });
 

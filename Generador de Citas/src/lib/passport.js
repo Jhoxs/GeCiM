@@ -20,14 +20,11 @@ async(req,correo,clave,done)=>{
     if(rows.length > 0){
         //guarda el correo en la tabla user
         const user = rows[0];
-        console.log(user);
-        console.log(user.clave);
         //valida el password por medio de la funcion que se encuentra en helpers
         const validarPass = await helpers.compararPassword(clave,user.clave);
-        console.log('Valid Pass: '+validarPass);
         if(validarPass){
             console.log('valido');
-            done(null,user,req.flash('success','Bienvenido...'+ user.nombre));
+            done(null,user,req.flash('success','Bienvenido...'+user.nombre));
         }else{
             done(null,false,req.flash('message','El password es incorrecto'));
         }
