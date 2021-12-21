@@ -8,7 +8,7 @@ CREATE TABLE usuario(
     cedula int (10) NOT NULL,
     correo varchar(30) NOT NULL UNIQUE, /*el correo debe de ser unico*/
     telefono int (10) NOT NULL,
-    clave varchar(30) NOT NULL,
+    clave varchar(60) NOT NULL, /*el tamaño crece debido a que esta se codifica*/
     /*fecha nacimiento*/
     nacimiento date NOT NULL,
     /*Llave primaria*/
