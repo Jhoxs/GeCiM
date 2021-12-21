@@ -1,4 +1,5 @@
 const passport = require('passport');
+//usado para hacer strategy locales
 const LocalStrategy = require('passport-local').Strategy;
 
 //llamada a la base de datos
@@ -23,8 +24,8 @@ async(req,correo,clave,done)=>{
         //valida el password por medio de la funcion que se encuentra en helpers
         const validarPass = await helpers.compararPassword(clave,user.clave);
         if(validarPass){
-            console.log('valido');
-            done(null,user,req.flash('success','Bienvenido...'+user.nombre));
+            //si es valido envia el usuario y un mensaje de bienvenida
+            done(null,user,req.flash('success','Bienvenido '+user.nombre+' '+user.apellido));
         }else{
             done(null,false,req.flash('message','El password es incorrecto'));
         }
@@ -70,7 +71,9 @@ passport.use('local.registro',new LocalStrategy({
 
 
 passport.serializeUser((user, done) => {
+    console.log(user.id);
     done(null, user);
+
   });
 
 //deserializar el usuario

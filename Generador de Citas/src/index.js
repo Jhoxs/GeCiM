@@ -45,7 +45,7 @@ app.use(express.urlencoded({extended: false}));
 //crea una sesion local
 app.use(
     session({
-      secret: "mysqlnodemysql",
+      secret: "Josemysqlnodemysql",
       resave: false,
       saveUninitialized: false,
       store: new MySQLStore(database),
