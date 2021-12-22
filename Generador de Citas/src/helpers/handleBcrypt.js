@@ -1,10 +1,9 @@
 const bcrypt = require('bcryptjs');
-
-const helpers = {};
+const encript = {};
 
 const genSalt = 10;
 //funcion encargada de encriptar la informacion que va a entrar a la base de datos
-helpers.encriptarPassword = async (password) => {
+encript.encriptarPassword = async (password) => {
     //gensal es el tamaño de los hash a usar para la encriptacion
     const salt = await bcrypt.genSalt(genSalt);
     //encriptamos el pasword con el hash
@@ -13,7 +12,7 @@ helpers.encriptarPassword = async (password) => {
 };
 
 //comprara el password encriptado con el password de la base de datos
-helpers.compararPassword = async (password,passGuardado) => {
+encript.compararPassword = async (password,passGuardado) => {
     try{
        //retornamos la comparacion entre la pass del formulario y la pass de la bd
         return await bcrypt.compare(password, passGuardado);
@@ -23,4 +22,7 @@ helpers.compararPassword = async (password,passGuardado) => {
     }
 };
 
-module.exports = helpers;
+
+
+
+module.exports = encript;

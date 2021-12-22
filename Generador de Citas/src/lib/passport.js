@@ -5,8 +5,9 @@ const LocalStrategy = require('passport-local').Strategy;
 //llamada a la base de datos
 const pool = require('../database');
 //importamos modulo que nos permite usar las funciones de encriptar y comparar
-const helpers = require('./helpers');
+const encript = require('../helpers/handleBcrypt');
 
+//--LOGIN---
 //creamos una funcion que nos permite logear con passport
 passport.use('local.login', 
 new LocalStrategy({
@@ -22,7 +23,7 @@ async(req,correo,clave,done)=>{
         //guarda el correo en la tabla user
         const user = rows[0];
         //valida el password por medio de la funcion que se encuentra en helpers
-        const validarPass = await helpers.compararPassword(clave,user.clave);
+        const validarPass = await encript.compararPassword(clave,user.clave);
         if(validarPass){
             //si es valido envia el usuario y un mensaje de bienvenida
             done(null,user,req.flash('success','Bienvenido '+user.nombre+' '+user.apellido));
@@ -35,7 +36,7 @@ async(req,correo,clave,done)=>{
     }
     
 }));
-
+//---REGISTRO---
 //Creamos la funcion que nos permite registrar a un usuario
 passport.use('local.registro',new LocalStrategy({
     usernameField: 'correo',
@@ -57,7 +58,7 @@ passport.use('local.registro',new LocalStrategy({
     }
 
     //Encriptamos la clave del usuario
-    nuevoUsuario.clave = await helpers.encriptarPassword(clave);
+    nuevoUsuario.clave = await encript.encriptarPassword(clave);
 
     //Guardamos los datos en la bd
     const resultado = await pool.query('INSERT INTO usuario SET ?',nuevoUsuario);
