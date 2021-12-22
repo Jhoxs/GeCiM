@@ -1,10 +1,10 @@
 const express = require('express');
-const { isNotLoggedIn } = require('../lib/auth');
 const router = express.Router();
+const { isNotLoggedIn } = require('../lib/auth');
 
-
+//isNotLoggedIn comprueba si alguien no esta logeado
 //landing
-router.get('/' ,isNotLoggedIn, async (req, res)=>{
+router.get('/' ,isNotLoggedIn, async (req,res)=>{
     res.render('index',{title:'GeCim'});
 });  
 

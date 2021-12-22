@@ -2,18 +2,20 @@ const express = require ('express');
 const morgan = require('morgan');
 const path = require ('path');
 const { engine } = require('express-handlebars');
-const session = require('express-session');
-const validator = require('express-validator'); 
 const passport = require('passport');
 const flash = require('connect-flash');
-const MySQLStore = require('express-mysql-session')(session);
 const bodyParser = require('body-parser')
-
+//Modulo para validacion de datos
+const validator = require('express-validator'); 
+//Modulos para crear sesion en una bd
+const session = require('express-session');
+const MySQLStore = require('express-mysql-session')(session);
 
 
 //llamada a la BD
-//--keys almacena la informacion de mi base de datos
-const { database } = require('./keys');
+//--config almacena la informacion de mi base de datos
+const { database } = require('./config');
+const sessionStore = new MySQLStore(database);
 
 //inicializadores
 const app = express();
@@ -31,7 +33,6 @@ app.engine('hbs', engine ({
     helpers: require('./lib/handlebars')
 }))
 app.set('view engine', 'hbs');
-
 //implementacion con plantilla ejs
 //app.engine('html',require('ejs').renderFile);
 //app.set('view engine','ejs');
@@ -41,21 +42,21 @@ app.set('view engine', 'hbs');
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
-
 //crea una sesion local
 app.use(
     session({
-      secret: "Josemysqlnodemysql",
+      key: 'session_cookie_name',
+      secret: "Josemysqlnodemysql_cookie_secret",
+      store: sessionStore,
       resave: false,
-      saveUninitialized: false,
-      store: new MySQLStore(database),
+      saveUninitialized: false
     })
   );
 //flash nos permite usar alertas en caso de algun error 
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
-//app.use(validator());
+
 
 
 //Variables Globales
@@ -72,6 +73,7 @@ app.use((req,res,next) => {
 app.use(require('./routes/index'));
 app.use(require('./routes/autenticacion'));
 app.use('/turnos',require('./routes/turnos'));
+app.use('/usuarios',require('./routes/usuarios'));
 
 
 //StaticFiles (public)

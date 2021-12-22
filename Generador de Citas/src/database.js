@@ -1,7 +1,7 @@
 const mysql = require ('mysql');
 const {promisify} = require('util'); //nos permite usar promesas
-//pide desde el archivo keys en objeto con el nombre database
-const { database } = require('./keys');
+//pide desde el archivo config en objeto con el nombre database
+const { database } = require('./config');
 
 const pool = mysql.createPool(database);
 
