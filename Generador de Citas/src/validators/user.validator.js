@@ -73,12 +73,10 @@ validacion.validateRegistro = [
     .withMessage('No se admiten mas de 40 caracteres.')
     .custom(async(value,{req})=>{
       const row = await pool.query('SELECT * FROM usuario WHERE correo = ?',[value]);
-      console.log('------row---')
-      console.log(row.lengh);
-      if(row.lenght > 0){
-        throw new Error ('Esta correo ya existe');
+      if(row.length > 0){
+        throw new Error ('Esta cedula ya existe');
       }
-      return true; 
+      return true;
   })
   ,//-----Telefono
   check('telefono')
@@ -88,9 +86,10 @@ validacion.validateRegistro = [
     .withMessage('Solo se admiten numeros')
     .isLength({max:10,min:7})
     .withMessage('Numero de caracteres invalido')
-    .custom(async(value)=>{
+    .custom(async(value,{req})=>{
       const row = await pool.query('SELECT * FROM usuario WHERE telefono = ?',[value]);
-      if(row.lenght > 0){
+      console.log(row.name);
+      if(row.length > 0){
         throw new Error ('Este telefono ya existe');
       }
       return true;

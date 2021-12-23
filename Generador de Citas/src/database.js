@@ -20,7 +20,7 @@ pool.getConnection((err,connection) => {
 
     if (connection) connection.release();
     console.log('La BD se ha conectado');
-        
+    
     return;
 });
 
