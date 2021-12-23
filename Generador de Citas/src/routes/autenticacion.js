@@ -8,16 +8,18 @@ const validacion = require('../validators/user.validator');
 
 //registrarse
 router.get('/registro',isNotLoggedIn,authCtrl.renderRegistro);
+
 router.post('/registro',validacion.validateRegistro, authCtrl.registro);
 
 //logear
 router.get('/login',isNotLoggedIn,authCtrl.renderLogin);
+
 router.post('/login',validacion.validateLogin,authCtrl.login);
 
 //cerrar sesion
 router.get('/logout',authCtrl.logout);
 
-
+//inicio
 router.get('/inicio', isLoggedIn, authCtrl.inicio);
 
 
