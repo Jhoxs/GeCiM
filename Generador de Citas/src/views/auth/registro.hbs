@@ -7,33 +7,33 @@
             <hr>
             {{!grupo de nombres}}
             <div class="frm-group">
-                <input type="text" id="fnombre" name="nombre" placeholder="Nombre" maxlength="20" >
-                <input type="text" id="fapellido" name="apellido" placeholder="Apellido" maxlength="20" ><br>
+                <input type="text" id="fnombre" name="nombre" placeholder="Nombre" maxlength="20" required>
+                <input type="text" id="fapellido" name="apellido" placeholder="Apellido" maxlength="20" required><br>
             </div>
             {{!grupo cedula}}
             <div class="frm-group">
-                <input type="text" id="fcedula" name="cedula" placeholder="Cedula" maxlength="10" pattern="[0-9]{10}" ><br>
+                <input type="text" id="fcedula" name="cedula" placeholder="Cedula" maxlength="10" pattern="[0-9]{10}" required><br>
             </div>
             {{!grupo email}}
             <div class="frm-group">
-                <input type="email" id="fcorreo" name="correo" placeholder="Correo Electronico" maxlength="40" ><br>
+                <input type="email" id="fcorreo" name="correo" placeholder="Correo Electronico" maxlength="40" required><br>
             </div>
             {{!grupo telefono}}
             <div class="frm-group">
-                <input type="tel" id="ftelefono" name="telefono" placeholder="Teléfono" maxlength="10" pattern="[0-9]{10}" title="Ingresa un telefono valido" ><br>
+                <input type="tel" id="ftelefono" name="telefono" placeholder="Teléfono" maxlength="10" pattern="[0-9]{10}" title="Ingresa un telefono valido" required><br>
             </div>
             <hr>
             {{!grupo pass1}}
             <div>
-                <input type="password" id="fpass" name="clave" placeholder="Contraseña" maxlength="15"><br>
+                <input type="password" id="fpass" name="clave" placeholder="Contraseña" maxlength="15" required><br>
             </div>
             {{!grupo pass2}}
             <div>
-                <input type="password" id="fpass1" name="repass" placeholder="Repetir la contraseña" maxlength="15"><br>
+                <input type="password" id="fpass1" name="repass" placeholder="Repetir la contraseña" maxlength="15" required><br>
             </div>
             <hr>
             <p class="form-p-registro">Fecha de nacimiento:</p>
-            <input id=fechaN type="date" name="nacimiento"  min="1910-00-00" max="2022-31-31">
+            <input id=fechaN type="date" name="nacimiento"  min="1910-00-00" max="2022-31-31" required>
             
             <p class="form-p-registro">Sexo:</p>
             <button id="fsex" type="button"> <!--disabled-->

@@ -40,7 +40,7 @@ validacion.validateRegistro = [
     .withMessage('Debe ingresar un apellido')
     .isLength({max:20})
     .withMessage('No se admite mas de 20 caracteres')
-  ,
+  ,//-------Cedula
   check('cedula')
     .custom((value) =>{
       if(validateCedula(value)){
@@ -55,15 +55,15 @@ validacion.validateRegistro = [
     .withMessage('No se admite mas de 10 caracteres')
     .isNumeric()
     .withMessage('Solo se admiten números')
-    .custom(async(value)=>{
-      const request = await pool.query('SELECT cedula FROM usuario WHERE cedula = ?',[value]);
-      if(request.lengh > 0){
-          return true;
-      }else{
+    .custom(async(value,{req})=>{
+      const row = await pool.query('SELECT * FROM usuario WHERE cedula = ?',[value]);
+      console.log(row.lenght);
+      if(row.length > 0){
         throw new Error ('Esta cedula ya existe');
       }
+      return true;
   })
-  ,
+  ,//--------Correo
   check('correo')
     .notEmpty()
     .withMessage('Debe llenar el campo correo.')
@@ -71,15 +71,16 @@ validacion.validateRegistro = [
     .withMessage('El correo ingresado no es valido.')
     .isLength({max:40})
     .withMessage('No se admiten mas de 40 caracteres.')
-    .custom(async(value)=>{
-      const request = await pool.query('SELECT cedula FROM usuario WHERE correo = ?',[value]);
-      if(request.lengh > 0){
-          return true;
-      }else{
+    .custom(async(value,{req})=>{
+      const row = await pool.query('SELECT * FROM usuario WHERE correo = ?',[value]);
+      console.log('------row---')
+      console.log(row.lengh);
+      if(row.lenght > 0){
         throw new Error ('Esta correo ya existe');
       }
+      return true; 
   })
-  ,
+  ,//-----Telefono
   check('telefono')
     .notEmpty()
     .withMessage('Debe ingresar un numero telefonico')
@@ -88,12 +89,11 @@ validacion.validateRegistro = [
     .isLength({max:10,min:7})
     .withMessage('Numero de caracteres invalido')
     .custom(async(value)=>{
-      const request = await pool.query('SELECT cedula FROM usuario WHERE telefono = ?',[value]);
-      if(request.lengh > 0){
-          return true;
-      }else{
+      const row = await pool.query('SELECT * FROM usuario WHERE telefono = ?',[value]);
+      if(row.lenght > 0){
         throw new Error ('Este telefono ya existe');
       }
+      return true;
   })
   ,
   check('clave')
@@ -103,7 +103,7 @@ validacion.validateRegistro = [
     .withMessage('No se admite mas de 20 caracteres.')
     //regexr
     .matches(/\d/)
-    .withMessage('Debe contener al menos un nuermo')
+    .withMessage('La contraseña deebe tener al menos un numero')
   ,
   check('repass').custom((value,{req})=>{
     if(value !== req.body.clave){

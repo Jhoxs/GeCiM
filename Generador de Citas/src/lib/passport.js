@@ -56,7 +56,9 @@ passport.use('local.registro',new LocalStrategy({
         nacimiento,
         sexo
     }
-
+    if(nuevoUsuario.sexo===undefined){
+        nuevoUsuario.sexo='Otros';
+    }
     //Encriptamos la clave del usuario
     nuevoUsuario.clave = await encript.encriptarPassword(clave);
 
