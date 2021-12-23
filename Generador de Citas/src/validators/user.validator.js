@@ -55,9 +55,9 @@ validacion.validateRegistro = [
     .withMessage('No se admite mas de 10 caracteres')
     .isNumeric()
     .withMessage('Solo se admiten números')
+    //busca datos de la cedula para ver si existen
     .custom(async(value,{req})=>{
       const row = await pool.query('SELECT * FROM usuario WHERE cedula = ?',[value]);
-      console.log(row.lenght);
       if(row.length > 0){
         throw new Error ('Esta cedula ya existe');
       }
