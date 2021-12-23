@@ -7,7 +7,6 @@ body,html{
     }
     #fsex{
         width: 21%;
-        
     }
 }
 html {
@@ -19,7 +18,9 @@ body{
     background-color: #e4e4e4 ;
     background-size: contain;
     overflow: auto;
+
 }
+
 .cont-registro{
     backdrop-filter: blur(1.5rem);
     display: flex;

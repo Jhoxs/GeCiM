@@ -31,7 +31,6 @@ body{
     /*overflow:hidden elimina la barra de la derecha*/
 }
 .cont-login{
-
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;

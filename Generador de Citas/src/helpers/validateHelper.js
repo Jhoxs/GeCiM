@@ -1,6 +1,6 @@
 const { validationResult } = require('express-validator');
 
-const validateResult = (req, res, next) => {
+const validateResult =  (req, res, next) => {
     try {
         validationResult(req).throw();
         return next()
@@ -13,8 +13,9 @@ const validateResult = (req, res, next) => {
             req.flash('message',errores[i].msg);
             console.log(errores[i].msg);
         }
-        res.redirect('/login');
-
+        //me redirecciona a  la url que obtiene
+        res.redirect(req.url);
+        
     }
 }
 
