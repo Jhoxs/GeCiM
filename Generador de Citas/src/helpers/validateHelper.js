@@ -9,11 +9,10 @@ const validateResult = (req, res, next) => {
         const errores = validationResult(req).errors;
         
         console.log('----ERRORES-----');
-        console.log({errors:err.array()});
-        console.log('---------------');
-        console.log(errores); 
-    
-        req.flash('message','No se ingresaron datos');
+        for(let i in errores){
+            req.flash('message',errores[i].msg);
+            console.log(errores[i].msg);
+        }
         res.redirect('/login');
 
     }

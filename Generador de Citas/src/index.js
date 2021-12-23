@@ -5,8 +5,6 @@ const { engine } = require('express-handlebars');
 const passport = require('passport');
 const flash = require('connect-flash');
 const bodyParser = require('body-parser')
-//Modulo para validacion de datos
-const validator = require('express-validator'); 
 //Modulos para crear sesion en una bd
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
@@ -30,12 +28,9 @@ app.engine('hbs', engine ({
     layoutsDir: path.join(app.get('views'), 'layouts'),
     partialsDir: path.join(app.get('views'), 'partials'),
     extname: '.hbs',
-    helpers: require('./lib/handlebars')
+    helpers: require('./helpers/handlebars')
 }))
 app.set('view engine', 'hbs');
-//implementacion con plantilla ejs
-//app.engine('html',require('ejs').renderFile);
-//app.set('view engine','ejs');
 
 
 //Middleware

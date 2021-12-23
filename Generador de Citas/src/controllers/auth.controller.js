@@ -1,6 +1,6 @@
 const authCtrl = {}
 const passport = require ('passport');
-const {check,body} = require('express-validator');
+
 
 //registro
 authCtrl.renderRegistro = (req,res)=>{

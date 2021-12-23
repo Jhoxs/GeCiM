@@ -8,17 +8,17 @@ const validacion = {};
 validacion.validateLogin = [
   check('correo')
     .notEmpty()
-    .withMessage('Debe llenar el campo correo')
+    .withMessage('Debe llenar el campo correo.')
     .isEmail()
-    .withMessage('El correo ingresado no es valido')
+    .withMessage('El correo ingresado no es valido.')
     .isLength({max:30})
-    .withMessage('No se admiten mas de 30 caracteres')
+    .withMessage('No se admiten mas de 30 caracteres.')
     ,
   check('clave')
     .notEmpty()
-    .withMessage('Debe llenar el campo contraseña')
+    .withMessage('Debe llenar el campo contraseña.')
     .isLength({max:20})
-    .withMessage('No se adminten mas de 20 caracteres'),
+    .withMessage('No se adminten mas de 20 caracteres.'),
   (req, res, next) => {
     validateResult(req, res, next);
   },
