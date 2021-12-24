@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-const { isLoggedIn, isNotLoggedIn } = require('../lib/auth');
+const { isLoggedIn, isNotLoggedIn } = require('../middleware/auth');
 const authCtrl = require('../controllers/auth.controller');
 //modulo encargado de validar los datos
 const validacion = require('../validators/user.validator');

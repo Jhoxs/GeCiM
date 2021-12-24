@@ -16,6 +16,10 @@ const { database } = require('./config');
 const sessionStore = new MySQLStore(database);
 iniciadorRoles.iniciar();
 
+//prueba
+const pruebas =require('./lib/tester');
+pruebas.crearDatos();
+
 //inicializadores
 const app = express();
 require('./lib/passport');

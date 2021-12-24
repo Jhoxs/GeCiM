@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { isNotLoggedIn } = require('../lib/auth');
+const { isNotLoggedIn } = require('../middleware/auth');
 
 //isNotLoggedIn comprueba si alguien no esta logeado
 //landing

@@ -75,8 +75,8 @@ passport.use('local.registro',new LocalStrategy({
 
 //serializacion del usuario
 passport.serializeUser((user, done) => {
+    //console.log(user);
     done(null, user.cedula);
-
 });
 
 //deserializacion del usuario
