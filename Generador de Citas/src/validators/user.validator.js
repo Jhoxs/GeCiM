@@ -26,7 +26,7 @@ validacion.validateLogin = [
     validateResult(req, res, next);
   },
 ];
-
+//validamos el formulario de registro
 validacion.validateRegistro = [
   
   check('nombre')
@@ -71,6 +71,7 @@ validacion.validateRegistro = [
     .withMessage('El correo ingresado no es valido.')
     .isLength({max:40})
     .withMessage('No se admiten mas de 40 caracteres.')
+    //busca los datos de correos electrinicos para ver si existen
     .custom(async(value,{req})=>{
       const row = await pool.query('SELECT * FROM usuario WHERE correo = ?',[value]);
       if(row.length > 0){
@@ -86,9 +87,11 @@ validacion.validateRegistro = [
     .withMessage('Solo se admiten numeros')
     .isLength({max:10,min:7})
     .withMessage('Numero de caracteres invalido')
+    //busca los datos del telefono para ver si existen
     .custom(async(value,{req})=>{
       const row = await pool.query('SELECT * FROM usuario WHERE telefono = ?',[value]);
-      console.log(row.name);
+      console.log('-----Prueba Telefono-----');
+      //console.log(row[0]);
       if(row.length > 0){
         throw new Error ('Este telefono ya existe');
       }
@@ -110,6 +113,7 @@ validacion.validateRegistro = [
     }
     return true;
   })
+  
   ,
   check('nacimiento')
     .notEmpty()
