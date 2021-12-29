@@ -124,6 +124,8 @@ validacion.validateRegistro = [
     validateResult(req,res,next);
   },
 ];
+
+
 /*
 Explicacion de algunas funciones validate
 .isLength({ min: 5 }) permite establecer un valor maximo o minimo

@@ -25,6 +25,8 @@ async(req,correo,clave,done)=>{
         //valida el password por medio de la funcion que se encuentra en helpers
         const validarPass = await encript.compararPassword(clave,user.clave);
         if(validarPass){
+            const newRol = await pool.query('SELECT roles.rol FROM usuario, rol_usuario, roles WHERE rol_usuario.id_usuario = usuario.cedula AND rol_usuario.id_rol = roles.id_rol AND usuario.cedula = ?',user.cedula);
+            Object.assign(user,{rol:newRol[0].rol});
             //si es valido envia el usuario y un mensaje de bienvenida
             done(null,user,req.flash('success','Bienvenido '+user.nombre+' '+user.apellido));
         }else{
@@ -61,7 +63,6 @@ passport.use('local.registro',new LocalStrategy({
     }
     //Encriptamos la clave del usuario
     nuevoUsuario.clave = await encript.encriptarPassword(clave);
-
     //Guardamos los datos en la bd
     const resultado = await pool.query('INSERT INTO usuario SET ?',nuevoUsuario);
     //Agregamos el rol por defecto 1 = Paciente
@@ -70,17 +71,36 @@ passport.use('local.registro',new LocalStrategy({
     console.log('---------');
     console.log(resultado.insertCedula);
     console.log('El usuario se registro en la base de datos');
+    console.log(nuevoUsuario);
     return done(null,nuevoUsuario);
 }));
 
 //serializacion del usuario
-passport.serializeUser((user, done) => {
-    //console.log(user);
-    done(null, user.cedula);
+passport.serializeUser (async(user, done) => {
+    try {
+        console.log('--Serializar--');
+        console.log(user);
+        done(null, user);
+    } catch (error) {
+        console.log(error);
+    }
+});
+passport.deserializeUser(async(user, done) => {
+done(null, user);
 });
 
+//serializacion id(cedula)
+/*passport.serializeUser (async(user, done) => {
+    try {
+        console.log('--Serializar--');
+        console.log(user);
+        done(null, user.cedula);
+    } catch (error) {
+        console.log(error);
+    }
+});*/
 //deserializacion del usuario
-passport.deserializeUser(async(cedula, done) => {
+/*passport.deserializeUser(async(cedula, done) => {
     const rows = await pool.query('SELECT * FROM usuario WHERE cedula = ?',[cedula]);
     done(null, rows[0]);
-  });
+  });*/

@@ -11,11 +11,10 @@ pruebas.crearDatos = async() =>{
         nacimiento : '1111-11-11',
         sexo : 'Hombre'
     }
-    console.log(newPrueba);
+    //console.log(newPrueba);
     const newRol = await pool.query('SELECT roles.rol FROM usuario, rol_usuario, roles WHERE rol_usuario.id_usuario = usuario.cedula AND rol_usuario.id_rol = roles.id_rol AND usuario.cedula = ?','1727621946');
-    //newPrueba.push({rol:newRol});
     Object.assign(newPrueba,{rol:newRol[0].rol});
-    console.log(newPrueba);
+    console.log('--------------');
 }
 
 module.exports = pruebas;

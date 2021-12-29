@@ -10,15 +10,16 @@ const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
 const iniciadorRoles = require('./lib/iniRolUsers');
 
+
 //llamada a la BD
 //--config almacena la informacion de mi base de datos
 const { database } = require('./config');
 const sessionStore = new MySQLStore(database);
-iniciadorRoles.iniciar();
 
-//prueba
+
+//pruebas
 const pruebas =require('./lib/tester');
-pruebas.crearDatos();
+//pruebas.crearDatos();
 
 //inicializadores
 const app = express();
@@ -65,6 +66,7 @@ app.use((req,res,next) => {
     app.locals.message = req.flash('message');
     app.locals.success = req.flash('success');
     app.locals.user = req.user;
+    
     next();
 });
 
