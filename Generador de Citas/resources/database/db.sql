@@ -77,3 +77,9 @@ CREATE TABLE turnos_usuarios(
   CONSTRAINT turnoUsuario_Fk1 FOREIGN KEY (id_usuario) REFERENCES usuario(cedula),
   CONSTRAINT turnoUsuario_Fk2 FOREIGN KEY (id_turno) REFERENCES turnos(id_turno)
 );
+
+
+
+/*Cambios el las llaves foraneas*/
+ALTER TABLE `rol_usuario` DROP FOREIGN KEY `rolUsuario_Fk1`; 
+ALTER TABLE `rol_usuario` ADD CONSTRAINT `rolUsuario_Fk1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario`(`cedula`) ON DELETE CASCADE ON UPDATE CASCADE;

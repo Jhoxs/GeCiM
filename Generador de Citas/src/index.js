@@ -8,7 +8,7 @@ const bodyParser = require('body-parser')
 //Modulos para crear sesion en una bd
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
-const iniciadorRoles = require('./lib/iniRolUsers');
+
 
 
 //llamada a la BD

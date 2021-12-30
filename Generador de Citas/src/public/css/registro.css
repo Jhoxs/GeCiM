@@ -59,6 +59,7 @@ body{
 .form-registro input[type="date"],
 .form-registro input[type="password"],
 .form-registro input[type="submit"],
+.form-registro select,
 .form-registro button{
     border: 0;
     background: none;
@@ -121,6 +122,16 @@ body{
     border-color: black;
     color: black;
 }
+
+.form-registro select:hover{
+    border-color:#F25C5C;
+}
+.form-registro select:focus{
+    background-color: #E9F2F2;
+    border-color: black;
+    color: black;
+}
+
 .form-registro button:hover{
     background:#F25C5C;
     color: white;
@@ -135,7 +146,8 @@ body{
 .form-registro input[id="fcorreo"],
 .form-registro input[id="ftelefono"],
 .form-registro input[id=fpass],
-.form-registro input[id=fpass1]
+.form-registro input[id=fpass1],
+.form-registro select
 {
     width: 96%;
 }

@@ -15,6 +15,7 @@ const validateResult =  (req, res, next) => {
             //console.log(errores[i].msg);
         }
         //me redirecciona a  la url que obtiene
+        console.log(req.url);
         res.redirect(req.url);
         
     }

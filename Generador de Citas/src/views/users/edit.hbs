@@ -1,0 +1,54 @@
+{{>navbar}}
+
+<div class="col-md-5 mx-auto" style="margin-top: 8px;">
+    
+     {{!inicio del fomulario}}    
+    <form  class="form-registro" style="background-color:  #ecedf0 ;" action="/usuarios/edit/{{oneUser.cedula}}" method="POST">
+        <h1 class="form-titulo text-center" >Edita tus datos</h1>
+        <p class="text-center">{{oneUser.nombre}} {{oneUser.apellido}}</p>
+        <hr>
+       
+        <div class="frm-group">
+            <input style="width: 49%;" type="text" id="fnombre" name="nombre" placeholder="Nombre" value="{{oneUser.nombre}}" maxlength="20" autofocus>
+            <input type="text" id="fapellido" name="apellido" placeholder="Apellido" value="{{oneUser.apellido}}" maxlength="20" required><br>
+        </div>
+        {{!grupo cedula}}
+        <div class="frm-group">
+            <input type="text" id="fcedula" name="cedula" placeholder="Cedula" value="{{oneUser.cedula}}" maxlength="10" pattern="[0-9]{10}" required><br>
+        </div>
+        {{!grupo email}}
+        <div class="frm-group">
+            <input type="email" id="fcorreo" name="correo" placeholder="Correo Electronico" value="{{oneUser.correo}}" maxlength="40" required><br>
+        </div>
+        {{!grupo telefono}}
+        <div class="frm-group">
+            <input type="tel" id="ftelefono" name="telefono" placeholder="Teléfono" value="0{{oneUser.telefono}}" maxlength="10" pattern="[0-9]{10}" title="Ingresa un telefono valido" required><br>
+        </div>
+        {{!grupo sexo}}
+        <div class="frm-group">
+            <select name="sexo" id="fsexo" required>
+                <option  selected value="{{oneUser.sexo}}">Cambiar de Sexo - {{oneUser.sexo}}</option>
+                <option  value="Hombre">Hombre</option>
+                <option  value="Mujer">Mujer</option>
+                <option  value="Otros">Otros</option>
+            </select>
+        </div>
+
+        <hr>
+        {{!grupo roles}}
+        <div class="frm-group">
+            <p>Rol actual del usuario: <b class="text-uppercase">{{oneUser.rol}}</b></p>
+            <select name="rol" id="frol"  required>
+                <option selected value="{{oneUser.rol}}">Cambiar de Rol - {{oneUser.rol}}</option>
+                <option value="paciente">Paciente</option>
+                <option value="administrador">Administrador</option>
+                <option value="doctor">Doctor</option>
+            </select>
+        </div>
+        <hr>
+        
+        <button onclick="location.href='/usuarios'" type="button">Atras</button>
+        <button type="submit" id="btn_aceptar">Aceptar</button>
+    </form>
+</div>
+

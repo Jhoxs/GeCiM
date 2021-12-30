@@ -125,6 +125,116 @@ validacion.validateRegistro = [
   },
 ];
 
+//-----------Validacion Edicion ADMIN
+validacion.validateEditAdmin = [
+  
+  check('nombre')
+    .notEmpty()
+    .withMessage('Debe ingresar un nombre')
+    .isLength({max:20})
+    .withMessage('No se admite mas de 20 caracteres')
+  ,
+  check('apellido')
+    .notEmpty()
+    .withMessage('Debe ingresar un apellido')
+    .isLength({max:20})
+    .withMessage('No se admite mas de 20 caracteres')
+  ,//-------Cedula
+  check('cedula')
+    .custom((value) =>{
+      if(validateCedula(value)){
+        return true
+      }else{
+        throw new Error ('La cedula ingresada no es valida');
+      }
+    })
+    .notEmpty()
+    .withMessage('Debe ingresar una cedula')
+    .isLength({max:10,min:10})
+    .withMessage('No se admite mas de 10 caracteres')
+    .isNumeric()
+    .withMessage('Solo se admiten números')
+    //busca datos de la cedula para ver si existen
+    .custom(async(value,{req})=>{
+      console.log('----prueba valores----');
+      console.log(req.params);
+      if(req.user.cedula != value){
+        const row = await pool.query('SELECT * FROM usuario WHERE cedula = ?',[value]);
+        if(row.length > 0){
+          throw new Error ('Esta cedula ya existe');
+        }
+        return true;
+      }
+      return true;
+      
+  })
+  ,//--------Correo
+  check('correo')
+    .notEmpty()
+    .withMessage('Debe llenar el campo correo.')
+    .isEmail()
+    .withMessage('El correo ingresado no es valido.')
+    .isLength({max:40})
+    .withMessage('No se admiten mas de 40 caracteres.')
+    //busca los datos de correos electrinicos para ver si existen
+    .custom(async(value,{req})=>{
+      const row = await pool.query('SELECT * FROM usuario WHERE correo = ?',[value]);
+      if(row.length > 0){
+        throw new Error ('Esta cedula ya existe');
+      }
+      return true;
+  })
+  ,//-----Telefono
+  check('telefono')
+    .notEmpty()
+    .withMessage('Debe ingresar un numero telefonico')
+    .isNumeric()
+    .withMessage('Solo se admiten numeros')
+    .isLength({max:10,min:7})
+    .withMessage('Numero de caracteres invalido')
+    //busca los datos del telefono para ver si existen
+    .custom(async(value,{req})=>{
+      const row = await pool.query('SELECT * FROM usuario WHERE telefono != ?',[value]);
+      console.log('-----Prueba Telefono-----');
+      //console.log(row[0]);
+      if(row.length > 0){
+        throw new Error ('Este telefono ya existe');
+      }
+      return true;
+  })
+  ,
+  check('sexo')
+    .notEmpty()
+    .withMessage('Debe llenar el campo sexo')
+    .isLength({max:10})
+    .withMessage('No se admiten mas de 10 caracteres')
+    .custom((value)=>{
+      if(value==='Hombre'||value==='Mujer'||value==='Otros'){
+        return true
+      }else{
+        throw new Error('Esta ingresando datos erroneos en el campo sexo');
+      }
+    })
+  ,
+  check('rol')
+    .notEmpty()
+    .withMessage('Debe llenar el campo de rol')
+    .isLength({max:10})
+    .withMessage('No se admiten mas de 10 caracteres')
+    .custom((value)=>{
+      if(value==='administrador'||value==='doctor'||value==='paciente'){
+        return true
+      }else{
+        throw new Error('Esta ingresando roles erroneos');
+      }
+    })
+  ,
+  (req,res,next) =>{
+    //console.log(req.body);
+    validateResult(req,res,next);
+  },
+];
+
 
 /*
 Explicacion de algunas funciones validate
