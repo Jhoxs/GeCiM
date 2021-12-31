@@ -18,6 +18,6 @@ router.get('/delete/:id',isLoggedIn,vRol.esAdmin,userCtrl.delete);
 
 //Edita a un usuario
 router.get('/edit/:id',isLoggedIn,vRol.esAdmin,userCtrl.editG);
-router.post('/edit/:id',isLoggedIn,vRol.esAdmin,validacion.validateEditAdmin);
+router.post('/edit/:id',isLoggedIn,vRol.esAdmin,validacion.validateEditAdmin,userCtrl.editP);
 
 module.exports = router;

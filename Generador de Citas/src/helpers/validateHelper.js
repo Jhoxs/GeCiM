@@ -1,4 +1,5 @@
 const { validationResult } = require('express-validator');
+const pool = require('../database');
 //funcion encargada de gestionar los errores
 const validateResult =  (req, res, next) => {
     try {
@@ -10,14 +11,15 @@ const validateResult =  (req, res, next) => {
         
         console.log('----ERRORES-----');
         console.log(errores);
+        //recorre y muestra todos los errores
         for(let i in errores){
             req.flash('message',errores[i].msg);
             //console.log(errores[i].msg);
         }
         //me redirecciona a  la url que obtiene
-        console.log(req.url);
-        res.redirect(req.url);
-        
+        console.log("-----URL-----");
+        console.log(req.originalUrl);
+        res.redirect(req.originalUrl);  
     }
 }
 

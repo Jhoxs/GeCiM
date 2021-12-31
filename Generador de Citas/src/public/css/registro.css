@@ -2,13 +2,22 @@ body,html{
     height: 100%;
 }
 @media only screen and (max-width: 548px){
-    #fnombre,#fapellido{
+    #fnombre,#fapellido,#fnEdA,#fnEdN{
         width: 96%;
     }
     #fsex{
         width: 21%;
     }
 }
+@media only screen and (min-width: 548px){
+    #fnEdN{
+        width: 50%;
+    }
+    #fnEdA{
+        width: 45%;
+    }
+}
+
 html {
     font-family: "Lucida Sans", sans-serif;
 }

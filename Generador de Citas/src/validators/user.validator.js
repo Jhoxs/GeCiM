@@ -1,5 +1,5 @@
 //importamos el modulo check
-const { check } = require("express-validator");
+const { check, validationResult } = require("express-validator");
 const { validateResult,validateCedula} = require("../helpers/validateHelper");
 //lamada a la base de datos
 const pool = require('../database');
@@ -157,18 +157,21 @@ validacion.validateEditAdmin = [
     //busca datos de la cedula para ver si existen
     .custom(async(value,{req})=>{
       console.log('----prueba valores----');
-      console.log(req.params);
-      if(req.user.cedula != value){
+      console.log(req.body.cedulaAct);
+      console.log('----------------------');
+      if(req.body.cedulaAct != value){
         const row = await pool.query('SELECT * FROM usuario WHERE cedula = ?',[value]);
         if(row.length > 0){
           throw new Error ('Esta cedula ya existe');
         }
         return true;
+      }else{
+        return true;
       }
-      return true;
+      
       
   })
-  ,//--------Correo
+  ,//--------Correo admin
   check('correo')
     .notEmpty()
     .withMessage('Debe llenar el campo correo.')
@@ -178,11 +181,16 @@ validacion.validateEditAdmin = [
     .withMessage('No se admiten mas de 40 caracteres.')
     //busca los datos de correos electrinicos para ver si existen
     .custom(async(value,{req})=>{
-      const row = await pool.query('SELECT * FROM usuario WHERE correo = ?',[value]);
-      if(row.length > 0){
-        throw new Error ('Esta cedula ya existe');
+      if(req.body.correoAct != value){
+        const row = await pool.query('SELECT * FROM usuario WHERE correo = ?',[value]);
+        if(row.length > 0){
+          throw new Error ('Este correo ya existe');
+        }
+        return true;
+      }else{
+        return true;
       }
-      return true;
+      
   })
   ,//-----Telefono
   check('telefono')
@@ -194,13 +202,16 @@ validacion.validateEditAdmin = [
     .withMessage('Numero de caracteres invalido')
     //busca los datos del telefono para ver si existen
     .custom(async(value,{req})=>{
-      const row = await pool.query('SELECT * FROM usuario WHERE telefono != ?',[value]);
-      console.log('-----Prueba Telefono-----');
-      //console.log(row[0]);
-      if(row.length > 0){
-        throw new Error ('Este telefono ya existe');
+      if(req.body.cedulaAct != value){
+        const row = await pool.query('SELECT * FROM usuario WHERE cedula = ?',[value]);
+        if(row.length > 0){
+          throw new Error ('Esta cedula ya existe');
+        }
+        return true;
+      }else{
+        return true;
       }
-      return true;
+      
   })
   ,
   check('sexo')
@@ -221,13 +232,29 @@ validacion.validateEditAdmin = [
     .withMessage('Debe llenar el campo de rol')
     .isLength({max:10})
     .withMessage('No se admiten mas de 10 caracteres')
-    .custom((value)=>{
-      if(value==='administrador'||value==='doctor'||value==='paciente'){
+    .custom(async(value)=>{
+      if(value.length>1){
+        const temp = await pool.query('SELECT rol_usuario.id_rol FROM rol_usuario, roles WHERE roles.rol = ? AND roles.id_rol = rol_usuario.id_rol',value);
+        value = temp[0].id_rol;
+      }
+      if(value>0 ||value<=3){
         return true
       }else{
         throw new Error('Esta ingresando roles erroneos');
       }
     })
+  ,
+  check('cedulaAct')
+    .isLength({max:10})
+    .isNumeric()
+  ,
+  check('correoAct')
+    .isLength({max:40})
+    .isEmail()
+  ,
+  check('telefonoAct')
+    .isLength({max:10})
+    .isNumeric()
   ,
   (req,res,next) =>{
     //console.log(req.body);

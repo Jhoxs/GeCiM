@@ -64,6 +64,7 @@ passport.use('local.registro',new LocalStrategy({
     //Encriptamos la clave del usuario
     nuevoUsuario.clave = await encript.encriptarPassword(clave);
     //Guardamos los datos en la bd
+    console.log(nuevoUsuario.telefono);
     const resultado = await pool.query('INSERT INTO usuario SET ?',nuevoUsuario);
     //Agregamos el rol por defecto 1 = Paciente
     await pool.query('INSERT INTO rol_usuario (id_rolUsuario,id_usuario,id_rol) VALUES (null,?,?)',[nuevoUsuario.cedula,'1']);
