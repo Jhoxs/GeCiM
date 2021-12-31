@@ -125,9 +125,18 @@ userCtrl.addP = async(req,res) =>{
 userCtrl.searchG = (req,res) =>{
     res.render('users/search');
 }
-userCtrl.searchP = async(req,res) =>{
 
-    res.render('users/result');
+userCtrl.searchP = async(req,res) =>{
+    const { cedula } = req.body;
+    try {
+        const rows = await pool.query('SELECT u.*,r.rol FROM usuario AS u, rol_usuario, roles AS r WHERE u.cedula = rol_usuario.id_usuario AND rol_usuario.id_rol = r.id_rol AND u.cedula = ? ',[cedula]);
+        //guarda el resultado de la base de datos y la envia para procesarla
+        res.render('users/result',{resUser:rows[0]});
+    } catch (error) {
+        req.flash('message','Ocurrio un error al consultar la BD');
+        res.redirect('/usuarios/search');
+    }
+    
 }
 
 

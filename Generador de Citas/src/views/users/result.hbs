@@ -2,13 +2,38 @@
 
 <div class="container p-4">
     <div class="row">
-        <div class="col-md-4 mx-auto">
+        <div class="col-md-5 mx-auto">
             <div class="card text-center">
                 <div class="card-body">
-                    {{#if user}}
-
+                    {{#if resUser}}
+                    {{#with resUser}}
+                     <a>
+                        <h3 class="card-title text-uppercase text-center">{{nombre}} {{apellido}}</h3>
+                    </a>
+                    <hr>
+                    <p class="m-3"><b>Correo: </b>{{correo}}</p>
+                    <p class="m-3"><b>Cedula: </b>{{cedula}}</p>
+                    <p class="m-3"><b>Teléfono: </b>{{telefono}}</p>
+                    <p class="m-3"><b>Sexo: </b>{{sexo}}</p>
+                    <p class="m-3"><b>Rol:</b> {{rol}}</p>
+                    <hr>
+                    <div class="text-center">
+                        <a class="btn btn-secondary" href="/usuarios/search">
+                            Nueva Busqueda
+                        </a>
+                        
+                        <a class="btn btn-primary" href="/usuarios/edit/{{cedula}}">
+                            Editar Datos
+                        </a>
+                        <a class="btn btn-danger" href="/usuarios/delete/{{cedula}}">
+                            Eliminar Usuario
+                        </a>
+                    </div>
+                    {{/with}}
                     {{else}}
-                    <h2>No se ha encotrado el usuario</h2>
+                    <h3>No se ha encotrado un usuario con esos datos</h3>
+                    <hr>
+                    <a class="btn btn-primary" href="/usuarios/search">Buscar nuevamente</a>
                     {{/if}}
                 </div>
             </div>
