@@ -10,8 +10,8 @@ const validacion = require('../validators/user.validator');
 router.get('/',isLoggedIn,vRol.esAdmin,userCtrl.inicio);
 
 //Agrega nuevos usuarios desde administrador
-router.get('/add',isLoggedIn,vRol.esAdmin,userCtrl.add);
-
+router.get('/add',isLoggedIn,vRol.esAdmin,userCtrl.addG);
+router.post('/add',isLoggedIn,vRol.esAdmin,validacion.validateRegistro,validacion.validaRRegistro,userCtrl.addP);
 
 //elemina al usuario seleccionado (solo administrador)
 router.get('/delete/:id',isLoggedIn,vRol.esAdmin,userCtrl.delete);

@@ -1,12 +1,12 @@
 const userCtrl = {}
 const pool = require ('../database')
+//importamos modulo que nos permite usar las funciones de encriptar y comparar
+const encript = require('../helpers/handleBcrypt');
 
-
-//muestra a todos los usuarios en pantalla
+//Muestra a todos los usuarios en pantalla
 userCtrl.inicio = async (req, res) => {
     try {
-
-        const allUser = await pool.query('SELECT u.*,r.rol FROM usuario AS u, rol_usuario, roles AS r WHERE u.cedula = rol_usuario.id_usuario AND rol_usuario.id_rol = r.id_rol AND u.cedula != ?',req.user.cedula)
+        const allUser = await pool.query('SELECT u.*,r.rol FROM usuario AS u, rol_usuario, roles AS r WHERE u.cedula = rol_usuario.id_usuario AND rol_usuario.id_rol = r.id_rol AND u.cedula != ? ORDER BY u.nombre ASC',req.user.cedula)
         //const allUser = await pool.query('SELECT * FROM usuario WHERE cedula != ?',req.user.cedula);
         res.render('users/users',{ allUser});
     } catch (error) {
@@ -86,9 +86,39 @@ userCtrl.editP = async(req,res) =>{
     }
 }
 
-
-
-userCtrl.add = (req,res) =>{
-    res.send('hola');
+//añade nuevos usuarios --- Admin
+userCtrl.addG = (req,res) =>{
+    res.render('users/add');
+}
+userCtrl.addP = async(req,res) =>{
+    //obtenemos los datos del body (formulario)
+    const {nombre, apellido, cedula, correo, telefono, clave, nacimiento, sexo, rol} = req.body;
+    //almacenamos los datos en un objeto
+    let newUser = {
+        nombre,
+        apellido,
+        cedula,
+        correo,
+        telefono,
+        clave,
+        nacimiento,
+        sexo
+    }
+    //llenamos sexo en caso de que este no sea definido
+    if(newUser.sexo===undefined){
+        nuevoUsuario.sexo='Otros';
+    }
+    //Encriptamos la clave del usuario
+    newUser.clave = await encript.encriptarPassword(clave);
+    //Almacenamos los datos en al base de datos
+    try {
+        await pool.query('INSERT INTO usuario SET ?',newUser);
+        await pool.query('INSERT INTO rol_usuario (id_rolUsuario,id_usuario,id_rol) VALUES (null,?,?)',[newUser.cedula,rol]);
+        req.flash('success','Se añadieron con exito los datos');
+        res.redirect('/usuarios');
+    } catch (error) {
+        req.flash('message','Ocurrio un error al guardar los datos')
+        res.redirect('/usuarios/add');
+    }
 }
 module.exports = userCtrl;

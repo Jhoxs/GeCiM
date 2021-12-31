@@ -1,0 +1,69 @@
+{{>navbar}}
+<div class="col-md-5 mx-auto" style="margin-top: 8px;">
+     
+     <form class="form-registro" style="background-color:  #ecedf0 ;" action="/usuarios/add" method="POST">
+            <h1 class="form-titulo text-center text-uppercase" >Agregar nuevo usuario</h1>
+            <hr>
+            {{!grupo de nombres}}
+            <div class="frm-group">
+                <input type="text" id="fnEdN" name="nombre" placeholder="Nombre" maxlength="20" required>
+                <input type="text" id="fnEdA" name="apellido" placeholder="Apellido" maxlength="20" required><br>
+            </div>
+            {{!grupo cedula}}
+            <div class="frm-group">
+                <input type="text" id="fcedula" name="cedula" placeholder="Cedula" maxlength="10" pattern="[0-9]{10}" required><br>
+            </div>
+            {{!grupo email}}
+            <div class="frm-group">
+                <input type="email" id="fcorreo" name="correo" placeholder="Correo Electronico" maxlength="40" required><br>
+            </div>
+            {{!grupo telefono}}
+            <div class="frm-group">
+                <input type="tel" id="ftelefono" name="telefono" placeholder="Teléfono" maxlength="10" pattern="[0-9]{10}" title="Ingresa un telefono valido" required><br>
+            </div>
+            <hr>
+            {{!grupo pass1}}
+            <div>
+                <input type="password" id="fpass" name="clave" placeholder="Contraseña" maxlength="15" required><br>
+            </div>
+            {{!grupo pass2}}
+            <div>
+                <input type="password" id="fpass1" name="repass" placeholder="Repetir la contraseña" maxlength="15" required><br>
+            </div>
+            <hr>
+            <p class="form-p-registro">Fecha de nacimiento:</p>
+            <input id=fechaN type="date" name="nacimiento"  min="1910-00-00" max="2022-31-31" required>
+            
+            <p class="form-p-registro">Sexo:</p>
+            <button id="fsex" type="button"> <!--disabled-->
+                Hombre
+                <input id=h type="radio" name="sexo" value="Hombre">
+            </button>
+            <button id="fsex" type="button">
+                Mujer
+                <input id=m type="radio" name="sexo" value="Mujer">
+            </button>
+            <button id="fsex" type="button">
+                Otros
+                <input id=o type="radio" name="sexo" value="Otros">
+            </button>    
+            
+            <hr>
+            {{!grupo roles}}
+            <div class="frm-group">
+                <p>Rol del usuario: <b class="text-uppercase"></b></p>
+                <select name="rol" id="frol" required>
+                    <option selected> Elegir un rol </option>
+                    <option value="1">Paciente</option>
+                    <option value="2">Doctor</option>
+                    <option value="3">Administrador</option>
+                </select>
+            </div>
+            <hr>
+    
+            <button onclick="location.href='/inicio'" type="button">Atras</button>
+            <button type="submit" id="btn_aceptar">Aceptar</button>
+    
+        </form>
+    </div>
+</div>

@@ -90,7 +90,7 @@ validacion.validateRegistro = [
     //busca los datos del telefono para ver si existen
     .custom(async(value,{req})=>{
       const row = await pool.query('SELECT * FROM usuario WHERE telefono = ?',[value]);
-      console.log('-----Prueba Telefono-----');
+      //console.log('-----Prueba Telefono-----');
       //console.log(row[0]);
       if(row.length > 0){
         throw new Error ('Este telefono ya existe');
@@ -237,7 +237,7 @@ validacion.validateEditAdmin = [
         const temp = await pool.query('SELECT rol_usuario.id_rol FROM rol_usuario, roles WHERE roles.rol = ? AND roles.id_rol = rol_usuario.id_rol',value);
         value = temp[0].id_rol;
       }
-      if(value>0 ||value<=3){
+      if(value>0 && value<=3){
         return true
       }else{
         throw new Error('Esta ingresando roles erroneos');
@@ -262,6 +262,23 @@ validacion.validateEditAdmin = [
   },
 ];
 
+//valida roles del registro -- admin
+validacion.validaRRegistro = [
+  check('rol')
+    .isNumeric()
+    .notEmpty()
+    .custom((value)=>{
+      if(value>0 && value<=3){
+        return true
+      }else{
+        throw new Error('Debe elegir un Rol');
+      }
+    })
+  ,
+  (req, res, next) => {
+    validateResult(req, res, next);
+  },
+];
 
 /*
 Explicacion de algunas funciones validate
