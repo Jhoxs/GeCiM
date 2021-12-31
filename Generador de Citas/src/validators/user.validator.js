@@ -279,6 +279,19 @@ validacion.validaRRegistro = [
     validateResult(req, res, next);
   },
 ];
+//valida ingreso de busqueda -- admin
+validacion.validaBsq = [
+  check('cedula')
+    .isNumeric()
+    .notEmpty()
+    .isLength({max:10})
+    .withMessage('No se admiten más de 10 digitos')
+  ,
+  (req, res, next) => {
+    validateResult(req, res, next);
+  },
+];
+
 
 /*
 Explicacion de algunas funciones validate

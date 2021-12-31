@@ -20,4 +20,11 @@ router.get('/delete/:id',isLoggedIn,vRol.esAdmin,userCtrl.delete);
 router.get('/edit/:id',isLoggedIn,vRol.esAdmin,userCtrl.editG);
 router.post('/edit/:id',isLoggedIn,vRol.esAdmin,validacion.validateEditAdmin,userCtrl.editP);
 
+//Busca a un usuario
+router.get('/search',isLoggedIn,vRol.esAdmin,userCtrl.searchG);
+router.post('/search',isLoggedIn,vRol.esAdmin,validacion.validaBsq,userCtrl.searchP);
+
+
+
+
 module.exports = router;

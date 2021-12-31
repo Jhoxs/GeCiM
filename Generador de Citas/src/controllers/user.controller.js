@@ -121,4 +121,15 @@ userCtrl.addP = async(req,res) =>{
         res.redirect('/usuarios/add');
     }
 }
+
+userCtrl.searchG = (req,res) =>{
+    res.render('users/search');
+}
+userCtrl.searchP = async(req,res) =>{
+
+    res.render('users/result');
+}
+
+
+
 module.exports = userCtrl;
