@@ -1,0 +1,54 @@
+{{>navbar}}
+
+<div class="col-md-5 mx-auto" style="margin-top: 8px;">
+    
+     {{!inicio del fomulario}}    
+    <form  class="form-registro" style="background-color:  #ecedf0 ;" action="/perfil/edit/" method="POST">
+
+        {{#with perfil}}
+        <h1 class="form-titulo text-center" >Edita tus datos</h1>
+        <p class="text-center">{{nombre}} {{apellido}}</p>
+        <hr>
+        <div class="frm-group fld-nombre " >
+            <input type="text" id="fnEdN" name="nombre" placeholder="Nombre" value="{{nombre}}" maxlength="20" autofocus>
+            <input type="text" id="fnEdA" name="apellido" placeholder="Apellido" value="{{apellido}}" maxlength="20" required><br>
+        </div>
+        {{!grupo cedula}}
+        <div class="frm-group">
+            <input type="text" id="fcedula" name="cedula" placeholder="Cedula" value="{{cedula}}" maxlength="10" pattern="[0-9]{10}" required><br>
+        </div>
+        {{!grupo email}}
+        <div class="frm-group">
+            <input type="email" id="fcorreo" name="correo" placeholder="Correo Electronico" value="{{correo}}" maxlength="40" required><br>
+        </div>
+        {{!grupo telefono}}
+        <div class="frm-group">
+            <input type="tel" id="ftelefono" name="telefono" placeholder="Teléfono" value="{{telefono}}" maxlength="10" pattern="[0-9]{7|10}" title="Ingresa un telefono valido" required><br>
+        </div>
+
+        <hr>
+        {{!grupo edad}}
+        <div class="frm-group">
+            <p class="form-p-group">Fecha de nacimiento: <b class="">{{nacimiento}}</b></p>
+            <input type="date" id="fnacimiento" name="nacimiento" placeholder="Nacimiento" value="{{newFecha}}" min="1910-00-00" max="2022-00-00">
+        </div>
+        {{!grupo sexo}}
+        <div class="frm-group">
+            <p class="form-p-group">Sexo: <b class="">{{sexo}}</b></p>
+            <select name="sexo" id="fsexo" required>
+                <option  selected value="{{sexo}}">Cambiar de Sexo - {{sexo}}</option>
+                <option  value="Hombre">Hombre</option>
+                <option  value="Mujer">Mujer</option>
+                <option  value="Otros">Otros</option>
+            </select>
+        </div>
+        <input type="hidden" value="{{cedula}}" name="cedulaAct" >
+        <input type="hidden" value="{{correo}}" name="correoAct" >
+        <input type="hidden" value="{{telefono}}" name="telefonoAct" >
+        <hr>
+        {{/with}}
+        <button onclick="location.href='/perfil'"  type="button">Atras</button>
+        <button type="submit" id="btn_aceptar">Guardar</button>
+    </form>
+</div>
+

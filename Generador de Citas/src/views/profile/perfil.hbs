@@ -1,0 +1,45 @@
+{{>navbar}}
+<div class="container p-4">
+    <div class="row">
+        {{#if perfil}}
+        {{#with perfil}}
+        <div class="col-md-7 mx-auto " style="margin-bottom:8px; ">
+            <div class="card" >
+                <div class="card-body">
+                    <a>
+                        <h3 class="card-title text-uppercase text-center">{{nombre}} {{apellido}}</h3>
+                    </a>
+                    <hr>
+                    <p class="m-3"><b>Correo: </b>{{correo}}</p>
+                    <p class="m-3"><b>Cedula: </b>{{cedula}}</p>
+                    <p class="m-3"><b>Teléfono: </b>0{{telefono}}</p>
+                    <p class="m-3"><b>Nacimiento: </b>{{newFecha}}</p>
+                    <p class="m-3"><b>Sexo: </b>{{sexo}}</p>
+                    <div class="text-center">
+                    <hr>
+                         <a class="btn btn-secondary" href="/inicio">
+                            Atras
+                        </a>
+                        <a class="btn btn-primary" href="/perfil/edit">
+                            Editar Datos
+                        </a>
+                    </div>
+                   
+
+                </div>
+            </div>
+            
+        </div>
+        {{/with}}
+        {{else}}
+        <div class="col-md-4 mx-auto">
+            <div class="card card-body text-center">
+                <h4>Hubo un error al mostrar su perfil</h4>
+                <hr>
+                <a  class="btn btn-primary m-3" href="/inicio">Volver al inicio</a>
+            </div>
+        </div>
+        {{/if}}    
+
+    </div>
+</div>

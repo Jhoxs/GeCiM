@@ -76,6 +76,7 @@ app.use(require('./routes/index'));
 app.use(require('./routes/autenticacion'));
 app.use('/turnos',require('./routes/turnos'));
 app.use('/usuarios',require('./routes/usuarios'));
+app.use('/perfil',require('./routes/perfil'));
 
 
 //StaticFiles (public)

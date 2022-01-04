@@ -1,5 +1,6 @@
 const userCtrl = {}
 const pool = require ('../database')
+const passport = require('passport');
 //importamos modulo que nos permite usar las funciones de encriptar y comparar
 const encript = require('../helpers/handleBcrypt');
 
@@ -8,7 +9,7 @@ userCtrl.inicio = async (req, res) => {
     try {
         const allUser = await pool.query('SELECT u.*,r.rol FROM usuario AS u, rol_usuario, roles AS r WHERE u.cedula = rol_usuario.id_usuario AND rol_usuario.id_rol = r.id_rol AND u.cedula != ? ORDER BY u.nombre ASC',req.user.cedula)
         //const allUser = await pool.query('SELECT * FROM usuario WHERE cedula != ?',req.user.cedula);
-        res.render('users/users',{ allUser});
+        res.render('users/users',{allUser});
     } catch (error) {
         console.log(error);
         req.flash('message','a ocurrido un error');
@@ -120,6 +121,7 @@ userCtrl.addP = async(req,res) =>{
         req.flash('message','Ocurrio un error al guardar los datos')
         res.redirect('/usuarios/add');
     }
+
 }
 
 userCtrl.searchG = (req,res) =>{
