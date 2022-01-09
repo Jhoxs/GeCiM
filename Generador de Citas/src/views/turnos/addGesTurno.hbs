@@ -1,0 +1,63 @@
+{{>navbar}}
+<div class="container p-4">
+    <div class="col-md-5 mx-auto m-2">
+        <form class="form-registro" style="background-color:  #ecedf0 ;" action="/turnos/addGesTurno" method="POST">
+            <h1 class="form-titulo text-center text-uppercase" >Generador de Turnos</h1>
+            <hr>
+            <div class="frm-group">
+                <p class="form-p-registro">
+                    Inicio del turno:
+                </p>
+                <input id="fIni"  type="time" value="08:00"   name="horaInicio" required>
+                <p class="form-p-registro">
+                    Fin del turno:
+                </p >
+                <input id="fFin" type="time" value="09:00"  name="horaFin" required>
+            </div>
+            <hr>
+            <p class="form-p-registro">
+                    Dias disponibles:
+            </p>
+            <div class="frm-group row">
+                
+                <div class="cDate"> 
+                    Lun
+                    <input type="checkbox" name="dias" value="lunes">
+                </div>
+
+                <div class="cDate">
+                    Mar
+                    <input type="checkbox" name="dias" value="martes">
+                </div>
+
+                <div class="cDate">
+                    Mie
+                    <input type="checkbox" name="dias" value="miercoles">
+                </div>
+
+                <div class="cDate"> 
+                    Jue
+                    <input type="checkbox" name="dias" value="jueves">
+                </div>
+
+                <div class="cDate">
+                    Vie
+                    <input type="checkbox" name="dias" value="viernes">
+                </div>
+
+                <div class="cDate">
+                    Sab
+                    <input type="checkbox" name="dias" value="sabado">
+                </div>
+
+                <div class="cDate">
+                    Dom
+                    <input  type="checkbox" name="dias" value="domingo">
+                </div>       
+            </div>
+            <hr>
+            <button onclick="location.href='/turnos/gesTurno'" type="button">Atras</button>
+            <button type="submit" id="btn_aceptar">Aceptar</button>
+        </form>
+    </div>
+</div>

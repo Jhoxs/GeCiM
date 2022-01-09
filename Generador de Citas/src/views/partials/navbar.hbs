@@ -27,7 +27,7 @@
           {{!pacientes}}
           {{#esPaciente user.rol}}
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="/turnos/addTurno">Generar Turno</a>
+            <a class="dropdown-item" href="/turnos/addTurno">Agendar Turno</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="/turnos/verTurno">Ver Turno</a>
           </div>
@@ -51,6 +51,16 @@
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="/usuarios/search">Buscar usuario</a>
           </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+          Gestión de Turnos
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/turnos/addGesTurno">Agregar Turnos</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/turnos/gesTurno">Listar Tunos</a>
         </li>
         {{/esAdmin}}
         {{!fin pestaña usuarios}}

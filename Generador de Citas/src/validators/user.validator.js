@@ -1,5 +1,5 @@
 //importamos el modulo check
-const { check, validationResult } = require("express-validator");
+const { check } = require("express-validator");
 const { validateResult,validateCedula} = require("../helpers/validateHelper");
 //lamada a la base de datos
 const pool = require('../database');
@@ -26,6 +26,7 @@ validacion.validateLogin = [
     validateResult(req, res, next);
   },
 ];
+
 //validamos el formulario de registro
 validacion.validateRegistro = [
   
@@ -403,6 +404,8 @@ validacion.validaPerfil = [
   },
   
 ];
+
+
 
 /*
 Explicacion de algunas funciones validate

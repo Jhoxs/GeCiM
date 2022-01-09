@@ -11,6 +11,7 @@ CREATE TABLE usuario(
     clave varchar(60) NOT NULL, /*el tamaño crece debido a que esta se codifica*/
     /*fecha nacimiento*/
     nacimiento date NOT NULL,
+    sexo varchar(15) NOT NULL,
     /*Llave primaria*/
     PRIMARY KEY (cedula)
 );
@@ -18,7 +19,7 @@ CREATE TABLE usuario(
 DROP TABLE IF EXISTS roles;
 CREATE TABLE roles(
   id_rol int(10) NOT NULL AUTO_INCREMENT,
-  rol varchar(10) NOT NULL,
+  rol varchar(15) NOT NULL,
   /*Llave primaria*/
     PRIMARY KEY (id_rol)
 );
@@ -35,7 +36,48 @@ CREATE TABLE  rol_Usuario(
   CONSTRAINT rolUsuario_Fk2 FOREIGN KEY (id_rol) REFERENCES roles (id_rol)
 );
 
+DROP TABLE IF EXISTS turnos;
+CREATE TABLE turnos(
+  id_turno int(4) NOT NULL AUTO_INCREMENT,
+  inicio_turno time NOT NULL UNIQUE,
+  fin_turno time NOT NULL UNIQUE,
+  /*Llave primaria*/
+  PRIMARY KEY (id_turno)
+);
 
+DROP TABLE IF EXISTS turnos_dias;
+CREATE TABLE turnos_dias(
+  id_turnoDias int(4) NOT NULL AUTO_INCREMENT,
+  dia_turno varchar(15) NOT NULL,
+  id_turno int(4) NOT NULL,
+  /*Llave primaria*/
+  PRIMARY KEY (id_turnoDias),
+  /*Llave foranea*/
+  CONSTRAINT turnoDias_Fk1 FOREIGN KEY (id_turno) REFERENCES turnos(id_turno)
+);
+ALTER TABLE `turnos_dias` DROP FOREIGN KEY `turnoDias_Fk1`; 
+ALTER TABLE `turnos_dias` ADD CONSTRAINT `turnoDias_Fk1` FOREIGN KEY (`id_turno`) REFERENCES `turnos`(`id_turno`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+DROP TABLE IF EXISTS turnos_usuarios;
+CREATE TABLE turnos_usuarios(
+  id_turnoUsuario int(4) NOT NULL AUTO_INCREMENT,
+  id_usPac int(4) NOT NULL,
+  id_usDoc int(4) NOT NULL,
+  id_turno int(4) NOT NULL,
+  /*Llave primaria*/
+  PRIMARY KEY (id_turnoUsuario),
+  /*Llave secundaria*/
+  CONSTRAINT turnoUsuario_Fk1 FOREIGN KEY (id_usPac) REFERENCES usuario(cedula),
+  CONSTRAINT turnoUsuario_Fk2 FOREIGN KEY (id_usDoc) REFERENCES usuario(cedula),
+  CONSTRAINT turnoUsuario_Fk3 FOREIGN KEY (id_turno) REFERENCES turnos(id_turno)
+);
+
+/*Cambios el las llaves foraneas*/
+ALTER TABLE `rol_usuario` DROP FOREIGN KEY `rolUsuario_Fk1`; 
+ALTER TABLE `rol_usuario` ADD CONSTRAINT `rolUsuario_Fk1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario`(`cedula`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
+/*-------tablas en desuso-------*/
 DROP TABLE IF EXISTS funcionalidades;
 CREATE TABLE funcionalidades(
   id_funcionalidad int(4) NOT NULL AUTO_INCREMENT,
@@ -54,32 +96,4 @@ CREATE TABLE rol_funcionalidades(
   /*Llaves foraneas*/
   CONSTRAINT rolFuncionalidad_Fk1 FOREIGN KEY (id_rolUsuario) REFERENCES rol_Usuario(id_rolUsuario),
   CONSTRAINT rolFuncionalidad_Fk2 FOREIGN KEY (id_funcionalidad) REFERENCES funcionalidades(id_funcionalidad)
-);
-
-DROP TABLE IF EXISTS turnos;
-CREATE TABLE turnos(
-  id_turno int(4) NOT NULL AUTO_INCREMENT,
-  dia_turno int(2) NOT NULL UNIQUE,
-  mes_turno int(2) NOT NULL UNIQUE,
-  anio_turno int(4) NOT NULL UNIQUE,
-  /*Llave primaria*/
-  PRIMARY KEY (id_turno)
-);
-
-DROP TABLE IF EXISTS turnos_usuarios;
-CREATE TABLE turnos_usuarios(
-  id_turnoUsuario int(4) NOT NULL AUTO_INCREMENT,
-  id_usuario int(4) NOT NULL,
-  id_turno int(4) NOT NULL,
-  /*Llave primaria*/
-  PRIMARY KEY (id_turnoUsuario),
-  /*Llave secundaria*/
-  CONSTRAINT turnoUsuario_Fk1 FOREIGN KEY (id_usuario) REFERENCES usuario(cedula),
-  CONSTRAINT turnoUsuario_Fk2 FOREIGN KEY (id_turno) REFERENCES turnos(id_turno)
-);
-
-
-
-/*Cambios el las llaves foraneas*/
-ALTER TABLE `rol_usuario` DROP FOREIGN KEY `rolUsuario_Fk1`; 
-ALTER TABLE `rol_usuario` ADD CONSTRAINT `rolUsuario_Fk1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario`(`cedula`) ON DELETE CASCADE ON UPDATE CASCADE;
+); 

@@ -14,10 +14,14 @@
                     </a>
                     {{/esDoctor}}
                     {{#esAdmin user.rol}}
-                    <a href="/usuarios" class="btn btn-secondary m-4">
-                        Ver Todos los Usuarios
+                    <a href="/usuarios" class="btn btn-secondary m-3">
+                        Gestión de Usuarios
+                    </a>
+                    <a href="/turnos/gesTurno" class="btn btn-secondary m-3 ">
+                        Gestión de turnos
                     </a>
                     <hr>
+                    <h5> Paciente:  </h5>
                     {{/esAdmin}}
                     {{!opciones de paciente}}
                     {{#esPaciente user.rol}}

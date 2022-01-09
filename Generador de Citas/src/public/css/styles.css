@@ -39,9 +39,8 @@ body{
     margin: 0;
     padding: 0;
   }
-
   
-@media (min-width: 992px) {
+  @media (min-width: 992px) {
     .masthead {
       height: 100vh;
     }
@@ -49,3 +48,4 @@ body{
       font-size: 5.5rem;
     }
   }
+  

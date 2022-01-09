@@ -8,7 +8,7 @@ iniciadorRoles.iniciar = async () => {
     if (row.length>0)
       return console.log("La BD ya tiene roles asignados");
     //Creamos usuarios para poder ingresar por primera vez
-      let newAdmin = {
+    const newAdmin = {
       nombre : 'Admin',
       apellido : 'Admin',
       cedula : '1111111111',
@@ -19,10 +19,10 @@ iniciadorRoles.iniciar = async () => {
       sexo : 'Hombre'
 
     }
-    let newDoc = {
+    const newDoc = {
       nombre : 'Doctor',
       apellido : 'Doctor',
-      cedula : '2222222222',
+      cedula : '5555555555',
       correo : 'doctor@doctor.com',
       telefono : '2222222222',
       clave : await encript.encriptarPassword('doctor1'),
@@ -46,11 +46,11 @@ iniciadorRoles.iniciar = async () => {
       ]),
       //Insertamos los usuarios creados y les asignamos roles
       pool.query('INSERT INTO usuario SET ?',newAdmin),
-      pool.query('INSERT INTO rol_usuario (id_rolUsuario,id_usuario,id_rol) VALUES (null,?,?)',[newAdmin.cedula,'3']),
       pool.query('INSERT INTO usuario SET ?',newDoc),
-      pool.query('INSERT INTO rol_usuario (id_rolUsuario,id_usuario,id_rol) VALUES (null,?,?)',[newDoc.cedula,'3']),
-
     ]);
+    //asigna los roles a los usuarios
+    await pool.query('INSERT INTO rol_usuario (id_rolUsuario,id_usuario,id_rol) VALUES (null,?,?)',[newAdmin.cedula,'3']);
+    await pool.query('INSERT INTO rol_usuario (id_rolUsuario,id_usuario,id_rol) VALUES (null,?,?)',[newDoc.cedula,'2']);
     console.log('Se crearon los datos correctamente');
   } catch (error) {
     console.log(error);

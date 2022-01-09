@@ -71,7 +71,9 @@ body{
 .form-registro input[type="date"],
 .form-registro input[type="password"],
 .form-registro input[type="submit"],
+.form-registro input[type="time"],
 .form-registro select,
+.form-registro .cDate,
 .form-registro button{
     border: 0;
     background: none;
@@ -114,17 +116,21 @@ body{
     width: 57%;
     
 }
-.form-registro button[id="fsex"]{
+.form-registro button[id="fsex"],
+.form-registro .cDate{
     width: 25%;
     cursor:auto;
 }
 
-.form-registro button{
+.form-registro button,
+/*botones de los dias*/
+.form-registro .cDate{
     background: #E9F2F2;
     color:black;
     cursor: pointer;
     width: 35%;
 }
+
 /*animaciones de los botones*/
 .form-registro input:hover{
     border-color:#F25C5C;
@@ -144,14 +150,19 @@ body{
     color: black;
 }
 
-.form-registro button:hover{
+.form-registro button:hover,
+.form-registro [class="cDate"]:hover{
     background:#F25C5C;
     color: white;
 } 
-.form-registro button[id="fsex"]:hover{
+
+.form-registro button[id="fsex"]:hover,
+.form-registro [class="cDate"]:hover{
     background: #011126;
 }
-.form-registro input[type="radio"]:hover{
+
+.form-registro input[type="radio"]:hover,
+.form-registro input[type="checkbox"]:hover{
     cursor: pointer;
 }
 
@@ -167,7 +178,10 @@ body{
 .form-registro input[id="ftelefono"],
 .form-registro input[id=fpass],
 .form-registro input[id=fpass1],
+.form-registro input[id=fIni],
+.form-registro input[id=fFin],
 .form-registro select
+
 {
     width: 96%;
 }

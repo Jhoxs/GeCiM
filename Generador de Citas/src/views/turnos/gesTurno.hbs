@@ -1,0 +1,222 @@
+{{>navbar}}
+
+{{#if allTurno}}
+<div class="container p-3">
+    <div class="row">
+        {{!Inicio lunes}}
+        <div class="col-md-4 mx-auto p-4" style="background-color:#011126">
+            <a>
+                <h2 class="text-center" style="color: white;">Lunes</h2> 
+            </a>
+            
+            <hr style="background-color: white;">   
+            {{#each allTurno}}
+            {{#esLun dia_turno}}
+            <div class="card">
+                <div class="card-body">
+                    <p class="m-3"><b>Inicio Turno: </b>{{inicio_turno}}</p>
+                    <p class="m-3"><b>Fin Turno: </b>{{fin_turno}}</p>
+                    <hr>
+                    <div class="text-center">
+                         <a class="btn btn-danger" href="#">
+                            Eliminar turno
+                        </a>
+                        <a class="btn btn-primary" href="#">
+                            Editar turno
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            {{/esLun}}
+            {{/each}}
+        </div>
+        {{!Fin Lunes}}
+
+        {{!Inicio Martes}}
+        <div class="col-md-4 mx-auto p-4" style="background-color:#ecedf0;">
+            <a>
+                <h2 class="text-center">Martes</h2> 
+            </a>
+            <hr> 
+            {{#each allTurno}}
+            {{#esMar dia_turno}}
+            <div class="card">
+                <div class="card-body">
+                    <p class="m-3"><b>Inicio Turno: </b>{{inicio_turno}}</p>
+                    <p class="m-3"><b>Fin Turno: </b>{{fin_turno}}</p>
+                    <hr>
+                    <div class="text-center">
+                         <a class="btn btn-danger" href="#">
+                            Eliminar turno
+                        </a>
+                        <a class="btn btn-primary" href="#">
+                            Editar turno
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {{else}}
+            <p>No hay</p>
+            {{/esMar}}
+            {{/each}}
+        </div>
+        {{!Fin Martes}}
+
+        {{!Inicio Miercoles}}
+        <div class="col-md-4 mx-auto p-4" style="background-color:#011126">
+            <a>
+                <h2 class="text-center" style="color: white;">Miercoles</h2> 
+            </a>
+            
+            <hr style="background-color: white;">   
+            {{#each allTurno}}
+            {{#esMie dia_turno}}
+            <div class="card">
+                <div class="card-body">
+                    <p class="m-3"><b>Inicio Turno: </b>{{inicio_turno}}</p>
+                    <p class="m-3"><b>Fin Turno: </b>{{fin_turno}}</p>
+                    <hr>
+                    <div class="text-center">
+                         <a class="btn btn-danger" href="#">
+                            Eliminar turno
+                        </a>
+                        <a class="btn btn-primary" href="#">
+                            Editar turno
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            {{/esMie}}
+            {{/each}}
+        </div>
+        {{!Fin Miercoles}}
+
+        {{!Inicio Jueves}}
+        <div class="col-md-4 mx-auto p-4" style="background-color:#ecedf0;">
+            <a>
+                <h2 class="text-center">Jueves</h2> 
+            </a>
+            <hr> 
+            {{#each allTurno}}
+            {{#esJue dia_turno}}
+            <div class="card">
+                <div class="card-body">
+                    <p class="m-3"><b>Inicio Turno: </b>{{inicio_turno}}</p>
+                    <p class="m-3"><b>Fin Turno: </b>{{fin_turno}}</p>
+                    <hr>
+                    <div class="text-center">
+                         <a class="btn btn-danger" href="#">
+                            Eliminar turno
+                        </a>
+                        <a class="btn btn-primary" href="#">
+                            Editar turno
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {{/esJue}}
+
+            {{/each}}
+        </div>
+        {{!Fin Jueves}}
+
+        {{!inicio Vienes}}
+        <div class="col-md-4 mx-auto p-4" style="background-color:#011126">
+            <a>
+                <h2 class="text-center" style="color: white;">Viernes</h2> 
+            </a>
+            <hr style="background-color: white;"> 
+            {{#each allTurno}}
+            {{#esVie dia_turno}}
+            <div class="card">
+                <div class="card-body">
+                    <p class="m-3"><b>Inicio Turno: </b>{{inicio_turno}}</p>
+                    <p class="m-3"><b>Fin Turno: </b>{{fin_turno}}</p>
+                    <hr>
+                    <div class="text-center">
+                         <a class="btn btn-danger" href="#">
+                            Eliminar turno
+                        </a>
+                        <a class="btn btn-primary" href="#">
+                            Editar turno
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            {{/esVie}}
+            {{/each}}
+        </div>
+        {{!Fin Viernes}}
+        {{!Inicio Sabado }}
+        <div class="col-md-4 mx-auto p-4" style="background-color:#ecedf0;">
+            <a>
+                <h2 class="text-center">Sabado</h2> 
+            </a>
+            <hr> 
+            {{#each allTurno}}
+            {{#esSab dia_turno}}
+            <div class="card">
+                <div class="card-body">
+                    <p class="m-3"><b>Inicio Turno: </b>{{inicio_turno}}</p>
+                    <p class="m-3"><b>Fin Turno: </b>{{fin_turno}}</p>
+                    <hr>
+                    <div class="text-center">
+                         <a class="btn btn-danger" href="#">
+                            Eliminar turno
+                        </a>
+                        <a class="btn btn-primary" href="#">
+                            Editar turno
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {{/esSab}}
+            {{/each}}
+        </div>
+        {{!Fin Sabado}}
+
+        {{!Inicio Domingo}}
+        <div class="col-md-4 mx-auto p-4" style="background-color:#ecedf0;">
+            <a>
+                <h2 class="text-center">Domingo</h2> 
+            </a>
+            <hr> 
+            {{#each allTurno}}
+            {{#esDom dia_turno}}
+            <div class="card">
+                <div class="card-body">
+                    <p class="m-3"><b>Inicio Turno: </b>{{inicio_turno}}</p>
+                    <p class="m-3"><b>Fin Turno: </b>{{fin_turno}}</p>
+                    <hr>
+                    <div class="text-center">
+                         <a class="btn btn-danger" href="#">
+                            Eliminar turno
+                        </a>
+                        <a class="btn btn-primary" href="#">
+                            Editar turno
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            {{/esDom}}
+            {{/each}}
+        </div>
+        {{!Fin Domingo}}
+        
+    
+    </div>
+</div>
+
+{{else}}
+<div class="col-md-4 mx-auto m-4">
+            <div class="card card-body text-center">
+                <h4>No existen turnos generados</h4>
+                <hr>
+                <a  class="btn btn-primary m-3" href="/turnos/addGesTurno">Generar turnos</a>
+            </div>
+        </div>
+{{/if}}

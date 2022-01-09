@@ -28,6 +28,7 @@ async(req,correo,clave,done)=>{
             const newRol = await pool.query('SELECT roles.rol FROM usuario, rol_usuario, roles WHERE rol_usuario.id_usuario = usuario.cedula AND rol_usuario.id_rol = roles.id_rol AND usuario.cedula = ?',user.cedula);
             Object.assign(user,{rol:newRol[0].rol});
             //si es valido envia el usuario y un mensaje de bienvenida
+            console.log(user);
             done(null,user,req.flash('success','Bienvenido '+user.nombre+' '+user.apellido));
         }else{
             done(null,false,req.flash('message','El password es incorrecto'));
@@ -64,7 +65,7 @@ passport.use('local.registro',new LocalStrategy({
     //Encriptamos la clave del usuario
     nuevoUsuario.clave = await encript.encriptarPassword(clave);
     //Guardamos los datos en la bd
-    console.log(nuevoUsuario.telefono);
+    //console.log(nuevoUsuario.telefono);
     const resultado = await pool.query('INSERT INTO usuario SET ?',nuevoUsuario);
     //Agregamos el rol por defecto 1 = Paciente
     await pool.query('INSERT INTO rol_usuario (id_rolUsuario,id_usuario,id_rol) VALUES (null,?,?)',[nuevoUsuario.cedula,'1']);
@@ -73,6 +74,8 @@ passport.use('local.registro',new LocalStrategy({
     console.log(resultado.insertCedula);
     console.log('El usuario se registro en la base de datos');
     console.log(nuevoUsuario);
+    const newRol = await pool.query('SELECT roles.rol FROM usuario, rol_usuario, roles WHERE rol_usuario.id_usuario = usuario.cedula AND rol_usuario.id_rol = roles.id_rol AND usuario.cedula = ?',nuevoUsuario.cedula);
+    Object.assign(nuevoUsuario,{rol:newRol[0].rol});
     return done(null,nuevoUsuario);
 }));
 
@@ -87,7 +90,7 @@ passport.serializeUser (async(user, done) => {
     }
 });
 passport.deserializeUser(async(user, done) => {
-done(null, user);
+    done(null, user);
 });
 
 //serializacion id(cedula)

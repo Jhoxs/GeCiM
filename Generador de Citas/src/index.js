@@ -9,7 +9,7 @@ const bodyParser = require('body-parser')
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
 
-
+const iniciadorRoles =require('./lib/iniRolUsers');
 
 //llamada a la BD
 //--config almacena la informacion de mi base de datos
@@ -24,6 +24,7 @@ const pruebas =require('./lib/tester');
 //inicializadores
 const app = express();
 require('./lib/passport');
+iniciadorRoles.iniciar();
 
 //Configuraciones
 app.set('port', process.env.PORT||3000);
