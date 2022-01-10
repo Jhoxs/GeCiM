@@ -7,11 +7,11 @@ const valTurno = require('../validators/turno.validator');
 
 //estas rutas usan /turno/addTurno
 router.get('/addTurno',isLoggedIn,vRol.esPaciente,(req,res)=>{
-    res.send('Mostrar Turnos');
+    res.render('turnos/addTurno');
 });
 
 router.get('/verTurno',isLoggedIn,vRol.esPaciente,(req,res)=>{
-    res.send('Ver Turnos');
+    res.render('turnos/verTurno');
 });
 
 //gestion de turnos 

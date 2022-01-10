@@ -11,24 +11,26 @@
             
             <hr style="background-color: white;">   
             {{#each allTurno}}
-            {{#esLun dia_turno}}
-            <div class="card">
-                <div class="card-body">
-                    <p class="m-3"><b>Inicio Turno: </b>{{inicio_turno}}</p>
-                    <p class="m-3"><b>Fin Turno: </b>{{fin_turno}}</p>
-                    <hr>
-                    <div class="text-center">
-                         <a class="btn btn-danger" href="#">
-                            Eliminar turno
-                        </a>
-                        <a class="btn btn-primary" href="#">
-                            Editar turno
-                        </a>
+                {{#esLun dia_turno}}
+                <div class="card">
+                    <div class="card-body">
+                        
+                        <p class="m-3"><b>Inicio Turno: </b>
+                        {{{dia_turno}}}
+                        </p>
+                        <p class="m-3"><b>Fin Turno: </b>{{$fin_turno}}</p>
+                        <hr>
+                        <div class="text-center">
+                            <a class="btn btn-danger" href="#">
+                                Eliminar turno
+                            </a>
+                            <a class="btn btn-primary" href="#">
+                                Editar turno
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            {{/esLun}}
+                {{/esLun}}
             {{/each}}
         </div>
         {{!Fin Lunes}}
@@ -56,8 +58,6 @@
                     </div>
                 </div>
             </div>
-            {{else}}
-            <p>No hay</p>
             {{/esMar}}
             {{/each}}
         </div>

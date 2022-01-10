@@ -1,0 +1,40 @@
+{{>navbar}}
+<div class="container p6">
+    <div class="row">
+        <div class="col-md-4 mr-auto" style="margin-top: 25px;">
+            <div class="ml">
+                <form class="form-registro"  style="background-color:#011126;" action="#" method="POST">
+                    <h3 class="form-title">Agendar Turno</h3>
+                    <hr style="background-color: white;">
+                    <div class="frm-group">
+                        <p class="form-p text-left">Ingresa la fecha en la que desea sacar el turno:</p>
+                        <input type="date"  id="fnBsq" name="fechaTurno"  style="color: black;" required >  
+                    </div>
+                    
+                    <hr style="background-color: white;">
+                    <div class="text-center">
+                        <button onclick="location.href='/inicio'"  type="button">Atras</button>
+                        <button type="submit" id="btn_aceptar">Buscar</button>
+                    </div>  
+                </form>
+            </div>
+        </div>    
+
+        <div class="col-md-8 ml-auto" style="margin-top: 29px;">
+            <div class="card">
+            <div class="card-body">
+                <a>
+                    <h3 class="card-title text-uppercase text-center">Turnos del dia disponibles</h3>
+                </a>
+                <hr>
+                <p>Los turnos del dia ----- de son: </p>
+            </div>
+        </div>
+        </div>
+        
+            
+        
+    </div>
+</div>
+
+    

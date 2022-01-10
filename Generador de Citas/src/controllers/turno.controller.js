@@ -5,7 +5,7 @@ turnoCtrl.listGesTurno = async(req,res) =>{
 
     try {
         const allTurno = await pool.query('SELECT t.*,td.dia_turno FROM turnos AS t, turnos_dias AS td WHERE t.id_turno = td.id_turno ORDER BY t.inicio_turno ASC');
-        console.log(allTurno);
+        //console.log(allTurno);
         res.render('turnos/gesTurno',{allTurno});
     } catch (error) {
         req.flash('message','Ha ocurrido un error al consultar los turnos');
