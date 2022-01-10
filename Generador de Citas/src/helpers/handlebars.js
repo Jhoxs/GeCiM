@@ -19,40 +19,38 @@ Handlebars.registerHelper("esDoctor",(rol,options)=>{
 
 
 //Verifica los dias
-Handlebars.registerHelper("esLun",(dia,options)=>{
-    if(dia ==='lunes'){
-        //console.log(options.data.root.allTurno);
-        //console.log(options.fn(dia))
-        return options.fn(this)
+Handlebars.registerHelper("esLun",(turno,options)=>{
+    if(turno.dia_turno ==='lunes'){
+        return options.fn(turno)
     }
 })
-Handlebars.registerHelper("esMar",(dia,option)=>{
-    if(dia ==='martes'){
-        return option.fn(this);
+Handlebars.registerHelper("esMar",(turno,option)=>{
+    if(turno.dia_turno ==='martes'){
+        return option.fn(turno);
     }
 })
-Handlebars.registerHelper("esMie",(dia,option)=>{
-    if(dia ==='miercoles'){
-        return option.fn(this);
+Handlebars.registerHelper("esMie",(turno,option)=>{
+    if(turno.dia_turno ==='miercoles'){
+        return option.fn(turno);
     }
 })
-Handlebars.registerHelper("esJue",(dia,option)=>{
-    if(dia ==='jueves'){
-        return option.fn(this);
+Handlebars.registerHelper("esJue",(turno,option)=>{
+    if(turno.dia_turno ==='jueves'){
+        return option.fn(turno);
     }
 })
-Handlebars.registerHelper("esVie",(dia,option)=>{
-    if(dia ==='viernes'){
-        return option.fn(this);
+Handlebars.registerHelper("esVie",(turno,option)=>{
+    if(turno.dia_turno ==='viernes'){
+        return option.fn(turno);
     }
 })
-Handlebars.registerHelper("esSab",(dia,option)=>{
-    if(dia ==='sabado'){
-        return option.fn(this);
+Handlebars.registerHelper("esSab",(turno,option)=>{
+    if(turno.dia_turno ==='sabado'){
+        return option.fn(turno);
     }
 })
-Handlebars.registerHelper("esDom",(dia,option)=>{
-    if(dia ==='domingo'){
-        return option.fn(this);
+Handlebars.registerHelper("esDom",(turno,option)=>{
+    if(turno.dia_turno ==='domingo'){
+        return option.fn(turno);
     }
 })

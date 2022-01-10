@@ -11,14 +11,12 @@
             
             <hr style="background-color: white;">   
             {{#each allTurno}}
-                {{#esLun dia_turno}}
+                {{#esLun this}}
                 <div class="card">
                     <div class="card-body">
                         
-                        <p class="m-3"><b>Inicio Turno: </b>
-                        {{{dia_turno}}}
-                        </p>
-                        <p class="m-3"><b>Fin Turno: </b>{{$fin_turno}}</p>
+                        <p class="m-3"><b>Inicio Turno: </b>{{inicio_turno}}</p>
+                        <p class="m-3"><b>Fin Turno: </b>{{fin_turno}}</p>
                         <hr>
                         <div class="text-center">
                             <a class="btn btn-danger" href="#">
@@ -42,7 +40,7 @@
             </a>
             <hr> 
             {{#each allTurno}}
-            {{#esMar dia_turno}}
+            {{#esMar this}}
             <div class="card">
                 <div class="card-body">
                     <p class="m-3"><b>Inicio Turno: </b>{{inicio_turno}}</p>
@@ -71,7 +69,7 @@
             
             <hr style="background-color: white;">   
             {{#each allTurno}}
-            {{#esMie dia_turno}}
+            {{#esMie this}}
             <div class="card">
                 <div class="card-body">
                     <p class="m-3"><b>Inicio Turno: </b>{{inicio_turno}}</p>
@@ -100,7 +98,7 @@
             </a>
             <hr> 
             {{#each allTurno}}
-            {{#esJue dia_turno}}
+            {{#esJue this}}
             <div class="card">
                 <div class="card-body">
                     <p class="m-3"><b>Inicio Turno: </b>{{inicio_turno}}</p>
@@ -129,7 +127,7 @@
             </a>
             <hr style="background-color: white;"> 
             {{#each allTurno}}
-            {{#esVie dia_turno}}
+            {{#esVie this}}
             <div class="card">
                 <div class="card-body">
                     <p class="m-3"><b>Inicio Turno: </b>{{inicio_turno}}</p>
@@ -157,7 +155,7 @@
             </a>
             <hr> 
             {{#each allTurno}}
-            {{#esSab dia_turno}}
+            {{#esSab this}}
             <div class="card">
                 <div class="card-body">
                     <p class="m-3"><b>Inicio Turno: </b>{{inicio_turno}}</p>
@@ -185,7 +183,7 @@
             </a>
             <hr> 
             {{#each allTurno}}
-            {{#esDom dia_turno}}
+            {{#esDom this}}
             <div class="card">
                 <div class="card-body">
                     <p class="m-3"><b>Inicio Turno: </b>{{inicio_turno}}</p>
