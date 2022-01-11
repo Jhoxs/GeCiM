@@ -21,6 +21,8 @@ Handlebars.registerHelper("esDoctor",(rol,options)=>{
 //Verifica los dias
 Handlebars.registerHelper("esLun",(turno,options)=>{
     if(turno.dia_turno ==='lunes'){
+        //console.log(options.fn(truno))
+        //return options.fn(this)
         return options.fn(turno)
     }
 })

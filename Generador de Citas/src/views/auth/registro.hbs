@@ -33,7 +33,7 @@
             </div>
             <hr>
             <p class="form-p-registro">Fecha de nacimiento:</p>
-            <input id=fechaN type="date" name="nacimiento"  min="1910-00-00" max="2022-31-31" required>
+            <input id="fechaN" type="date" name="nacimiento"  min="1900-01-01"  required>
             
             <p class="form-p-registro">Sexo:</p>
             <button id="fsex" type="button"> <!--disabled-->
@@ -46,7 +46,7 @@
             </button>
             <button id="fsex" type="button">
                 Otros
-                <input id=o type="radio" name="sexo" value="Otros">
+                <input id="fsex" type="radio" name="sexo" value="Otros">
             </button>    
             
             <hr >
@@ -61,3 +61,25 @@
  </div>
  
 {{!<script src="/js/script.js"></script>}}
+
+<script>
+    // Use Javascript
+    let hoy = new Date();
+    //selecciona el dia
+    let dd = hoy.getDate();
+    //selecciona el mes
+    let mm = hoy.getMonth()+1; //Enero empieza en 0 por lo que es necesario agregar un 1, para que cumpla con el estandar
+    //selecciona el año
+    let yyyy = hoy.getFullYear();
+    //establecemos el formato para que sea acorde al estandar del input
+    if(dd<10){
+    dd='0'+dd
+    } 
+    if(mm<10){
+    mm='0'+mm
+    } 
+
+    hoy = yyyy+'-'+mm+'-'+dd;
+    //hace que el dia minimo sea hoy
+    document.getElementById("fechaN").setAttribute("max",hoy);
+</script>

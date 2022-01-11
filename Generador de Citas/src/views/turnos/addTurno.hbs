@@ -3,12 +3,12 @@
     <div class="row">
         <div class="col-md-4 mr-auto" style="margin-top: 25px;">
             <div class="ml">
-                <form class="form-registro"  style="background-color:#011126;" action="#" method="POST">
+                <form class="form-registro"  style="background-color:#011126;" action="/turnos/addTurno" method="POST">
                     <h3 class="form-title">Agendar Turno</h3>
                     <hr style="background-color: white;">
                     <div class="frm-group">
                         <p class="form-p text-left">Ingresa la fecha en la que desea sacar el turno:</p>
-                        <input type="date"  id="fnBsq" name="fechaTurno"  style="color: black;" required >  
+                        <input type="date"  id="fnBsq" name="fechaTurno" value="{{turno.fechaTurno}}" style="color: black;" required >  
                     </div>
                     
                     <hr style="background-color: white;">
@@ -26,7 +26,17 @@
                     <h3 class="card-title text-uppercase text-center">Turnos del dia disponibles</h3>
                 </a>
                 <hr>
-                <p>Los turnos del dia ----- de son: </p>
+                {{#if turno}}
+                <p>Los turnos del dia {{turno.dia}} de son: </p>
+                {{else}}
+                <div class="card" style="background-color:#011126;" >
+                    <div class="card-body">
+                        <h3 class="card-title text-center" style="color:white;">
+                            No ha iniciado la búsqueda
+                        </h3>
+                    </div>
+                </div>
+                {{/if}}
             </div>
         </div>
         </div>
@@ -37,3 +47,25 @@
 </div>
 
     
+<script>
+    // Use Javascript
+    let hoy = new Date();
+    //selecciona el dia
+    let dd = hoy.getDate();
+    //selecciona el mes
+    let mm = hoy.getMonth()+1; //Enero empieza en 0 por lo que es necesario agregar un 1, para que cumpla con el estandar
+    //selecciona el año
+    let yyyy = hoy.getFullYear();
+    //establecemos el formato para que sea acorde al estandar del input
+    if(dd<10){
+    dd='0'+dd
+    } 
+    if(mm<10){
+    mm='0'+mm
+    } 
+
+    hoy = yyyy+'-'+mm+'-'+dd;
+    //hace que el dia minimo sea hoy
+    document.getElementById("fnBsq").setAttribute("min",hoy);
+    //document.getElementById("fnBsq").setAttribute("value",hoy);
+</script>

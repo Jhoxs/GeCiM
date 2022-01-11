@@ -1,0 +1,27 @@
+{{>navbar}}
+{{#with turno}}
+<div class="container p-3">
+    <div class="col-md-5 mx-auto">
+        <form action="/turnos/editGesTurno/{{id_turno}}" method="POST" class="form-registro" style="background-color: #ecedf0 ;">
+            <h1 class="form-titulo text-center" >Editar Turno</h1>
+            <hr>
+            <div class="frm-group">
+                <p><b>Id Turno: </b>{{id_turno}}</p>
+                <p class="form-p-registro">
+                    Inicio del turno:
+                </p>
+                <input id="fIni"  type="time" value="{{inicio_turno}}"   name="horaInicio" required>
+                <p class="form-p-registro">
+                    Fin del turno:
+                </p >
+                <input id="fFin" type="time" value="{{fin_turno}}"  name="horaFin" required>
+            </div>
+            <hr>
+            <p><b>Importante:</b> El cambio de horario afectara a todos los turnos con el mismo ID.</p>
+            <button onclick="location.href='/turnos/gesTurno'" type="button">Atras</button>
+            <button type="submit" id="btn_aceptar">Aceptar</button>
+        </form>
+    </div>
+</div>
+{{/with}}
+

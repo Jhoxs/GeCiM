@@ -64,6 +64,7 @@ CREATE TABLE turnos_usuarios(
   id_usPac int(4) NOT NULL,
   id_usDoc int(4) NOT NULL,
   id_turno int(4) NOT NULL,
+  fecha_consulta date NOT NULL,
   /*Llave primaria*/
   PRIMARY KEY (id_turnoUsuario),
   /*Llave secundaria*/

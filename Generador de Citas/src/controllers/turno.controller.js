@@ -15,6 +15,66 @@ turnoCtrl.listGesTurno = async(req,res) =>{
 
 }
 
+
+turnoCtrl.deleteGesTurno = async(req,res) =>{
+    const{id} = req.params;
+    
+    if(id.includes('+')){//Elimina el turno en base a su dia
+        //separa en dos la ruta
+        let newId = id.split('+');
+        try {
+            await pool.query('DELETE FROM turnos_dias WHERE id_turno = ? AND dia_turno = ?',[newId[0],newId[1]]);
+            req.flash('success','El turno se elimino con exito');
+            res.redirect('/turnos/gesTurno');
+        } catch (error) {
+            console.log(error);
+            req.flash('message','Ocurrio un error al eliminar el turno');
+            res.redirect('/turnos/gesTurno');
+        }    
+    }else{//elimina el turno en base a su id (se eliminan todos los turnos)
+        try {
+            await pool.query('DELETE FROM turnos WHERE id_turno = ? ',[id]);
+            req.flash('success','Los turnos se eliminaron con exito');
+            res.redirect('/turnos/gesTurno');
+        } catch (error) {
+            console.log(error);
+            req.flash('message','Ocurrio un error al eliminar los turnos');
+            res.redirect('/turnos/gesTurno');
+        } 
+    }
+}
+
+//muestra los turnos para su edicion
+//GET
+turnoCtrl.editGesTurnoG = async(req,res) =>{
+    const {id} = req.params;
+    try {
+        const turno = await pool.query('SELECT * FROM turnos WHERE id_turno = ?',[id]);
+        res.render('turnos/editGesTurno',{turno:turno[0]});
+    } catch (error) {
+        req.flash('message','Ocurrio un error al mostrar el turno');
+        res.redirect('/turnos/gesTurno');
+        console.log(error);
+    }
+    
+}
+//POST
+turnoCtrl.editGesTurnoP = async(req,res) =>{
+    const  {horaInicio, horaFin} = req.body;
+    const {id} = req.params;
+    try {
+        await pool.query('UPDATE turnos SET inicio_turno = ? , fin_turno = ? WHERE id_turno = ?',[horaInicio,horaFin,id]);
+        req.flash('success','Los datos se actualizaron con exito');
+        res.redirect('/turnos/gesTurno');
+    } catch (error) {
+        console.log(error);
+        req.flash('message','Ocurrio un error al editar los datos');
+        res.redirect(req.originalUrl);
+    }
+    
+}
+
+//Agrega nuevos turnos
 turnoCtrl.addGesTurnoG = (req,res) =>{
     res.render('turnos/addGesTurno');
 }
@@ -74,8 +134,6 @@ turnoCtrl.addGesTurnoP = async(req,res) =>{
         req.flash('message','Ha ocurrido un error');
         res.redirect('addGesTurno');
     }
-    
-    //res.redirect('addGesTurno');
 }
 
 module.exports = turnoCtrl;
