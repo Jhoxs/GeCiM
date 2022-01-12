@@ -73,6 +73,7 @@ CREATE TABLE turnos_usuarios(
   CONSTRAINT turnoUsuario_Fk3 FOREIGN KEY (id_turno) REFERENCES turnos(id_turno)
 );
 
+
 /*Cambios el las llaves foraneas*/
 ALTER TABLE `rol_usuario` DROP FOREIGN KEY `rolUsuario_Fk1`; 
 ALTER TABLE `rol_usuario` ADD CONSTRAINT `rolUsuario_Fk1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario`(`cedula`) ON DELETE CASCADE ON UPDATE CASCADE;
@@ -98,3 +99,24 @@ CREATE TABLE rol_funcionalidades(
   CONSTRAINT rolFuncionalidad_Fk1 FOREIGN KEY (id_rolUsuario) REFERENCES rol_Usuario(id_rolUsuario),
   CONSTRAINT rolFuncionalidad_Fk2 FOREIGN KEY (id_funcionalidad) REFERENCES funcionalidades(id_funcionalidad)
 ); 
+
+
+/*PROTOTIPO*/
+DROP TABLE IF EXISTS dias;
+CREATE TABLE dias(
+  id_dias int(4) NOT NULL AUTO_INCREMENT,
+  dias_semana varchar(15) NOT NULL,
+  PRIMARY KEY (id_dias)
+);
+/* Nueva tabla intermedia*/
+DROP TABLE IF EXISTS turnos_dias;
+CREATE TABLE turnos_dias(
+  id_turnoDias int(4) NOT NULL AUTO_INCREMENT,
+  id_turno int(4) NOT NULL,
+  id_dias int(4) NOT NULL,
+  /*Llave primaria*/
+  PRIMARY KEY (id_turnoDias),
+  /*Llave foranea*/
+  CONSTRAINT turnoDias_Fk1 FOREIGN KEY (id_turno) REFERENCES turnos(id_turno)
+  CONSTRAINT turnoDias_Fk2 FOREIGN KEY (id_dias) REFERENCES dias(id_dias)
+);

@@ -1,5 +1,6 @@
 const turnoCtrl = {}
 const pool = require('../database');
+const { DateTime } = require('luxon');
 
 turnoCtrl.listGesTurno = async(req,res) =>{
 
@@ -135,5 +136,57 @@ turnoCtrl.addGesTurnoP = async(req,res) =>{
         res.redirect('addGesTurno');
     }
 }
+
+//-----Seccion para mostrar turnos
+//--Metodo get para addTurno
+turnoCtrl.addTurnoG = (req,res) =>{
+    res.render('turnos/addTurno');
+}
+
+//--Método post para addTurno
+turnoCtrl.addTurnoP = async (req,res) =>{
+    const {fechaTurno} = req.body;
+    //obtiene el dia de la fecha
+    let dia = DateTime.fromISO(fechaTurno).setLocale('es-ES').weekdayLong;
+    let fechaComp = DateTime.fromISO(fechaTurno).setLocale('es-Es').toFormat('dd LLLL');
+    try {
+        let horario = await pool.query('SELECT t.* FROM turnos AS t,turnos_dias AS td WHERE td.dia_turno = ? AND t.id_turno = td.id_turno ORDER BY t.inicio_turno ASC',[dia]);
+        const horarioComp = await pool.query('SELECT t.* FROM turnos_usuarios AS tu, turnos AS t WHERE tu.fecha_consulta = ? AND t.id_turno = tu.id_turno;',[fechaTurno]);
+        
+        //en caso de que existan personas en este turno
+        if(horarioComp.length>0){
+            //Inavilita los turnos en caso de que exista una coincidencia
+            for(let i in horario){
+                if(horario[i].disponible === undefined) Object.assign(horario[i],{disponible:true});
+                for(let j in horarioComp){
+                    if(horario[i].inicio_turno === horarioComp[j].inicio_turno && horario[i].fin_turno === horarioComp[j].fin_turno){
+                        Object.assign(horario[i],{disponible:false});
+                    }
+                }
+            }
+        }else{
+            //Inserta un parametro dentro de los turnos, que nos permite ponerlos a todos disponibles
+            for(let i in horario){
+                Object.assign(horario[i],{disponible:true});
+            }
+        }
+        let newTurno = {
+            fechaTurno,
+            dia,
+            fechaComp,
+            horario
+        }
+        res.render('turnos/addTurno',({turno:newTurno}));
+
+    } catch (error) {
+        console.log(error);
+        req.flash('message','Ocurrio un error a encontrar los datos');
+        res.redirect('addTurno')
+    }
+    
+    
+    
+}
+
 
 module.exports = turnoCtrl;

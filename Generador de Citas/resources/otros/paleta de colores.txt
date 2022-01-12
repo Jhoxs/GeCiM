@@ -3,3 +3,6 @@
 
  Fondo crema
  #ecedf0
+
+ Fondo error
+ #F25C5C

@@ -28,7 +28,7 @@ async(req,correo,clave,done)=>{
             const newRol = await pool.query('SELECT roles.rol FROM usuario, rol_usuario, roles WHERE rol_usuario.id_usuario = usuario.cedula AND rol_usuario.id_rol = roles.id_rol AND usuario.cedula = ?',user.cedula);
             Object.assign(user,{rol:newRol[0].rol});
             //si es valido envia el usuario y un mensaje de bienvenida
-            console.log(user);
+            //console.log(user);
             done(null,user,req.flash('success','Bienvenido '+user.nombre+' '+user.apellido));
         }else{
             done(null,false,req.flash('message','El password es incorrecto'));
@@ -69,11 +69,11 @@ passport.use('local.registro',new LocalStrategy({
     const resultado = await pool.query('INSERT INTO usuario SET ?',nuevoUsuario);
     //Agregamos el rol por defecto 1 = Paciente
     await pool.query('INSERT INTO rol_usuario (id_rolUsuario,id_usuario,id_rol) VALUES (null,?,?)',[nuevoUsuario.cedula,'1']);
-    console.log(resultado);
-    console.log('---------');
-    console.log(resultado.insertCedula);
-    console.log('El usuario se registro en la base de datos');
-    console.log(nuevoUsuario);
+    //console.log(resultado);
+    //console.log('---------');
+    //console.log(resultado.insertCedula);
+    //console.log('El usuario se registro en la base de datos');
+    //console.log(nuevoUsuario);
     const newRol = await pool.query('SELECT roles.rol FROM usuario, rol_usuario, roles WHERE rol_usuario.id_usuario = usuario.cedula AND rol_usuario.id_rol = roles.id_rol AND usuario.cedula = ?',nuevoUsuario.cedula);
     Object.assign(nuevoUsuario,{rol:newRol[0].rol});
     return done(null,nuevoUsuario);
@@ -82,8 +82,8 @@ passport.use('local.registro',new LocalStrategy({
 //serializacion del usuario
 passport.serializeUser (async(user, done) => {
     try {
-        console.log('--Serializar--');
-        console.log(user);
+        //console.log('--Serializar--');
+        //console.log(user);
         done(null, user);
     } catch (error) {
         console.log(error);

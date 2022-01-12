@@ -38,8 +38,26 @@ body{
     font-size: 4rem;
     margin: 0;
     padding: 0;
-  }
-  
+}
+
+/*cards de los turnos*/
+.btn-disp{
+  background-color:#011126; 
+  color:white;
+  border-color: white;
+}
+.btn-noDisp{
+  background-color:#F25C5C;
+  color: black;
+  border-color: white;
+}
+/*animacion de cards*/
+.btn-disp:hover{
+  background:#F25C5C;
+  color: black;
+} 
+
+
   @media (min-width: 992px) {
     .masthead {
       height: 100vh;

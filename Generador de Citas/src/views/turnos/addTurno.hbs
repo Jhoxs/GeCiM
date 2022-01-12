@@ -8,7 +8,7 @@
                     <hr style="background-color: white;">
                     <div class="frm-group">
                         <p class="form-p text-left">Ingresa la fecha en la que desea sacar el turno:</p>
-                        <input type="date"  id="fnBsq" name="fechaTurno" value="{{turno.fechaTurno}}" style="color: black;" required >  
+                        <input type="date"  id="fnBsq" name="fechaTurno" value="{{turno.fechaTurno}}"  max="2025-01-01" style="color: black;" required >  
                     </div>
                     
                     <hr style="background-color: white;">
@@ -23,12 +23,42 @@
             <div class="card">
             <div class="card-body">
                 <a>
-                    <h3 class="card-title text-uppercase text-center">Turnos del dia disponibles</h3>
+                    <h3 class="card-title text-uppercase text-center">Turnos del dia {{turno.dia}}</h3>
                 </a>
                 <hr>
                 {{#if turno}}
-                <p>Los turnos del dia {{turno.dia}} de son: </p>
-                {{else}}
+                <p>Los turnos del dia {{turno.dia}}, {{turno.fechaComp}} son: </p>
+                {{#if turno.horario}}
+                    {{#each turno.horario}}
+                        {{#if disponible}}
+                        <a href="/inicio" style="text-decoration: none;">
+                            <div class="card text-center btn-disp">
+                            <div class="card-body">
+                                <p class="m-3"><b>Inicio del turno: </b>{{inicio_turno}}</p>
+                                <p class="m-3"><b>Fin del turno: </b>{{fin_turno}}</p>
+                            </div>
+                            </div>
+                        </a>
+                        {{else}}
+                        <div class="card text-center btn-noDisp" >
+                            <div class="card-body">
+                                <p class="m-3"><b>Inicio del turno: </b>{{inicio_turno}}</p>
+                                <p class="m-3"><b>Fin del turno: </b>{{fin_turno}}</p>
+                            </div>
+                        </div>
+                        {{/if}}
+                    {{/each}}
+                {{else}}{{!else turnos.horario}}
+                <div class="card" style="background-color:#011126;" >
+                    <div class="card-body">
+                        <h3 class="card-title text-center" style="color:white;">
+                            No hay turnos disponibles para el dia {{turno.dia}}
+                        </h3>
+                    </div>
+                </div>
+                {{/if}}{{!if turnos.horario}}
+                
+                {{else}}{{!else turnos}}
                 <div class="card" style="background-color:#011126;" >
                     <div class="card-body">
                         <h3 class="card-title text-center" style="color:white;">
