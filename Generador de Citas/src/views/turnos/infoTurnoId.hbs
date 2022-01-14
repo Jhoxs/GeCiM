@@ -1,0 +1,46 @@
+{{>navbar}}
+<div class="container p6 mt-3">
+    <div class="row">
+        <div class="col-md-5 mx-auto">
+            <div class="card">
+                {{#with paciente}}
+                <div class="card-body">
+                    <a>
+                        <h3 class="card-title text-uppercase text-center">Informacion del paciente</h3>
+                        <p class="text-center text-uppercase">{{nombre}} {{apellido}} </p>
+                    </a>
+                    <hr>
+                    <table class="table table-hover table-striped">
+                        <tr>
+                            <td><b>Nombre</b></td>
+                            <td>{{nombre}} {{apellido}}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Cédula</b></td>
+                            <td>{{cedula}}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Teléfono</b></td>
+                            <td>{{telefono}}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Nacimiento</b></td>
+                            <td>{{telefono}}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Sexo</b></td>
+                            <td>{{sexo}}</td>
+                        </tr>
+                    </table>
+                    <hr>
+                    <div class="text-center">
+                        <a class="btn btn-primary" href="/turnos/verTurnoDia">
+                            Volver
+                        </a>
+                    </div>
+                </div>
+                {{/with}}
+            </div>
+        </div>
+    </div>
+</div>

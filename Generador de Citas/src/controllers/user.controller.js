@@ -22,6 +22,36 @@ userCtrl.inicio = async (req, res) => {
 userCtrl.delete = async(req,res) =>{
     const{id} = req.params;
     try {
+        //En caso que eliminemos el usuario tambien debemos eliminar sus posibles turnos
+        //primero verificamos si existe un turno
+        const rows = await pool.query('SELECT * FROM turnos_usuarios WHERE id_usPac = ?',[id]);
+        if(rows.length>0){
+            //eliminamos los turnos generados en caso de que existan
+            await pool.query('DELETE FROM turnos_usuarios WHERE id_usPac = ?',[id]);
+        }
+        //verificamos si el usuario es doctor 
+        const esDoctor = await pool.query('SELECT * FROM turnos_usuarios WHERE id_usDoc = ?',[id]);
+        if(esDoctor.length>0){
+            //en caso de que el usuario que vayamos a eliminar sea un doctor debemos asignarles los turnos de el a otros doctores
+            //Obtenemos todos los doctores que sean diferentes a este doctor
+            const aDoc = await pool.query('SELECT u.cedula FROM usuario AS u, rol_usuario AS ru, roles AS r WHERE u.cedula = ru.id_usuario AND r.id_rol = ru.id_rol AND r.rol = ? AND u.cedula != ?',['doctor',id]);
+            //aDoc = todos los doctores
+            if(aDoc.length>0){
+                let max = aDoc.length;
+                let min = 0;
+                let sD;
+                //recorremos el arreglo para reasignar turnos
+                for(let i in esDoctor){
+                    sD = Math.floor(Math.random() * (max - min) + min);
+                    //actualizamos las listas para remplazar los turnos con doctores ya existentes
+                    await pool.query('UPDATE turnos_usuarios AS tu SET tu.id_usDoc = ? WHERE tu.id_usDoc = ? AND tu.id_usPac = ?',[aDoc[sD].cedula,esDoctor[i].id_usDoc,esDoctor[i].id_usPac]);
+                }
+            }else{//en caso de que solo exista un doctor, no permite borrarlo
+                req.flash('message','No puede borrar este usuario');
+                res.redirect('/usuarios');
+            }
+        }  
+        res.redirect('/usuarios');
         //DELETE FROM `usuario` WHERE `usuario`.`cedula` = 1709989352
         await pool.query('DELETE FROM usuario WHERE cedula = ?',[id])
         req.flash('success','El usuario se elimino correctamente');

@@ -1,0 +1,38 @@
+{{>navbar}}
+<div class="container p6">
+    <div class="row">
+        <div class="col-md-8 mx-auto" style="margin-top: 29px;">
+            <div class="card">
+                <div class="card-body">
+                    <a>
+                        <h3 class="card-title text-uppercase text-center">Citas del dia {{turno.dia}}</h3>
+                    </a>
+                    <hr>
+                    <p>Los citas programadas para el dia {{turno.dia}}, {{turno.fechaEntera}} son:  </p>
+                    {{#if turno.paciente}}
+                        {{#each turno.paciente}}
+                                <a href="/turnos/verTurnoDia/{{cedula}}" style="text-decoration: none;">
+                                    <div class="card text-center btn-turno">
+                                        <div class="card-body">
+                                            <p class="text-uppercase text-center"><b>{{nombre}} {{apellido}} - {{cedula}}</b></p>
+                                            <hr style="background-color:white">
+                                            <p class="m-3"><b>Inicio del turno: </b>{{inicio_turno}}</p>
+                                            <p class="m-3"><b>Fin del turno: </b>{{fin_turno}}</p>
+                                        </div>
+                                    </div>
+                                </a>
+                        {{/each}}
+                    {{else}}{{!else turnos.horario}}
+                    <div class="card" style="background-color:#011126;" >
+                        <div class="card-body">
+                            <h3 class="card-title text-center" style="color:white;">
+                                No hay citas programadas para el dia {{turno.dia}}
+                            </h3>
+                        </div>
+                    </div>
+                    {{/if}}{{!if turnos.horario}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

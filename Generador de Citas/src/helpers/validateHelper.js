@@ -23,6 +23,43 @@ const validateResult =  (req, res, next) => {
     }
 }
 
+const validateResultURL =  (req, res, next) => {
+    try {
+        validationResult(req).throw();
+        return next()
+
+    } catch (err) {
+        const errores = validationResult(req).errors;
+        console.log('----ERRORES-----');
+        console.log(errores);
+        //recorre y muestra todos los errores
+        for(let i in errores){
+            req.flash('message',errores[i].msg);
+        }
+        //me redirecciona a  la url que obtiene
+        res.redirect('/turnos/addTurno');  
+    }
+}
+
+const validateResultDoc =  (req, res, next) => {
+    try {
+        validationResult(req).throw();
+        return next()
+
+    } catch (err) {
+        const errores = validationResult(req).errors;
+        console.log('----ERRORES-----');
+        console.log(errores);
+        //recorre y muestra todos los errores
+        for(let i in errores){
+            req.flash('message',errores[i].msg);
+        }
+        //me redirecciona a  la url que obtiene
+        res.redirect('/turnos/verTurnoDia');  
+    }
+}
+
+
 //funcion para validar una cedula
 const validateCedula = (cedula) =>{
     //comprobar si cumple con los carateres iniciales
@@ -47,4 +84,4 @@ const validateCedula = (cedula) =>{
 }
 
 
-module.exports = { validateResult , validateCedula}
+module.exports = { validateResult , validateCedula, validateResultURL,validateResultDoc}

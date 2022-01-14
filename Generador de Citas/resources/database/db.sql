@@ -61,8 +61,8 @@ ALTER TABLE `turnos_dias` ADD CONSTRAINT `turnoDias_Fk1` FOREIGN KEY (`id_turno`
 DROP TABLE IF EXISTS turnos_usuarios;
 CREATE TABLE turnos_usuarios(
   id_turnoUsuario int(4) NOT NULL AUTO_INCREMENT,
-  id_usPac int(4) NOT NULL,
-  id_usDoc int(4) NOT NULL,
+  id_usPac int(4) NOT NULL UNIQUE, /*Solo debe haber un turno por paciente*/
+  id_usDoc int(4) NOT NULL, 
   id_turno int(4) NOT NULL,
   fecha_consulta date NOT NULL,
   /*Llave primaria*/

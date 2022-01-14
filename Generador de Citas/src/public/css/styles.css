@@ -46,6 +46,12 @@ body{
   color:white;
   border-color: white;
 }
+.btn-turno{
+  background-color:#011126; 
+  color:white;
+  border-color: black;
+  margin-bottom: 1px;
+}
 .btn-noDisp{
   background-color:#F25C5C;
   color: black;
@@ -54,10 +60,14 @@ body{
 /*animacion de cards*/
 .btn-disp:hover{
   background:#F25C5C;
-  color: black;
+  color: #011126;
 } 
 
-
+.btn-turno:hover{
+  background-color: #F2B705;
+  border-color: #011126;
+  color: #011126;
+}
   @media (min-width: 992px) {
     .masthead {
       height: 100vh;

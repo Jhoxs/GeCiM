@@ -27,18 +27,18 @@
                 </a>
                 <hr>
                 {{#if turno}}
-                <p>Los turnos del dia {{turno.dia}}, {{turno.fechaComp}} son: </p>
+                <p>Los turnos del dia {{turno.dia}}, {{turno.fechaComp}} son:  </p>
                 {{#if turno.horario}}
                     {{#each turno.horario}}
                         {{#if disponible}}
-                        <a href="/inicio" style="text-decoration: none;">
-                            <div class="card text-center btn-disp">
-                            <div class="card-body">
-                                <p class="m-3"><b>Inicio del turno: </b>{{inicio_turno}}</p>
-                                <p class="m-3"><b>Fin del turno: </b>{{fin_turno}}</p>
-                            </div>
-                            </div>
-                        </a>
+                            <a href="/turnos/addTurno/{{id_turno}}+{{ft}}" style="text-decoration: none;">
+                                <div class="card text-center btn-disp">
+                                <div class="card-body">
+                                    <p class="m-3"><b>Inicio del turno: </b>{{inicio_turno}}</p>
+                                    <p class="m-3"><b>Fin del turno: </b>{{fin_turno}}</p>
+                                </div>
+                                </div>
+                            </a>
                         {{else}}
                         <div class="card text-center btn-noDisp" >
                             <div class="card-body">
@@ -87,11 +87,17 @@
     //selecciona el año
     let yyyy = hoy.getFullYear();
     //establecemos el formato para que sea acorde al estandar del input
+    /*
+    dd++;
+    if(dd>31){ //valida para que solo se acepte el dia siguiente
+      dd= 0;  
+    } */
     if(dd<10){
-    dd='0'+dd
-    } 
+        dd='0'+dd;
+    }
+    
     if(mm<10){
-    mm='0'+mm
+        mm='0'+mm;
     } 
 
     hoy = yyyy+'-'+mm+'-'+dd;

@@ -1,13 +1,57 @@
 {{>navbar}}
 
-{{#if turnos}}
+{{#if turno}}
+
+<div class="container p4">
+    <div class="row">
+        <div class="col-md-5 mx-auto m-4">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title text-uppercase text-center">
+                        Informacion del turno
+                    </h3>
+                    <p class="text-center text-uppercase">{{user.rol}} {{user.nombre}}</p>
+                    <hr>
+                    {{#with turno}}
+                    <table class="table table-hover table-striped">
+                        <tr>
+                            <td><b>Doctor Encargado</b></td>
+                            <td>{{nombreDoc}} {{apellidoDoc}}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Inicio del Turno</b></td>
+                            <td>{{iniTurno}}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Fin del Turno</b></td>
+                            <td>{{finTurno}}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Dia de la Consulta</b></td>
+                            <td>{{dia}}, {{fechaComp}}</td>
+                        </tr>
+                    </table>
+
+                    {{/with}}
+                    <hr>
+                    <div class="text-center">
+                        <a class="btn btn-danger" href="/turnos/deleteTurno">
+                            Eliminar Turno
+                        </a>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 {{else}}
 <div class="col-md-4 mx-auto m-4">
-            <div class="card card-body text-center">
-                <h4>Usted no ha sacado un turno</h4>
-                <hr>
-                <a  class="btn btn-primary m-3" href="/turnos/addTurno">Agendar turno</a>
-            </div>
-        </div>
+    <div class="card card-body text-center">
+        <h4>Usted no ha sacado un turno</h4>
+        <hr>
+        <a  class="btn btn-primary m-3" href="/turnos/addTurno">Agendar turno</a>
+    </div>
+</div>
 {{/if}}
