@@ -26,6 +26,21 @@ turnoCtrl.deleteGesTurno = async(req,res) =>{
         //newId[1] contiene el dia del turno
         try {
             //Elimina los turnos de la gestion de turnos (se elimina un turno en especifico)
+            //--Elimina los usuarios(si es que existen)
+            const aUser = await pool.query('SELECT * FROM turnos_usuarios WHERE id_turno = ? ',[newId[0]]);
+            if(aUser.length > 0){
+                //verificamos si los usuarios tienen turno en ese dia
+                for(let i in aUser){
+                    //Transformamos la fecha para poder utilizarla
+                    let nF = aUser[i].fecha_consulta.toISOString();
+                    let dia = DateTime.fromISO(nF).setLocale('es-ES').weekdayLong;
+                    //busca los dias en los que se tiene la misma fecha
+                    if(dia === newId[1]){
+                        await pool.query('DELETE FROM turnos_usuarios WHERE id_usPac = ?',[aUser[i].id_usPac]);
+                    }
+                }
+            }
+            //--Elimina el turno
             await pool.query('DELETE FROM turnos_dias WHERE id_turno = ? AND dia_turno = ?',[newId[0],newId[1]]);
             req.flash('success','El turno se elimino con exito');
             res.redirect('/turnos/gesTurno');

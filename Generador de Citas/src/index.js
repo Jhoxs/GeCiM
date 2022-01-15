@@ -8,25 +8,29 @@ const bodyParser = require('body-parser')
 //Modulos para crear sesion en una bd
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
+//Modulo para agregar taeras al servidor
+const cron = require('node-cron');
+const taskCron = require('./helpers/tareasCron');
 
 const iniciadorRoles =require('./lib/iniRolUsers');
 
-//llamada a la BD
-//--config almacena la informacion de mi base de datos
+//--llamada a la BD
+//config almacena la informacion de mi base de datos
 const { database } = require('./config');
 const sessionStore = new MySQLStore(database);
 
 
-//pruebas
+//--pruebas
 const pruebas =require('./lib/tester');
+const { DateTime } = require('luxon');
 //pruebas.crearDatos();
 
-//inicializadores
+//--inicializadores
 const app = express();
 require('./lib/passport');
 iniciadorRoles.iniciar();
 
-//Configuraciones
+//--Configuraciones
 app.set('port', process.env.PORT||3000);
 app.set('views', path.join(__dirname, '/views'));
 //implementacion con plantillaa hbs
@@ -40,7 +44,7 @@ app.engine('hbs', engine ({
 app.set('view engine', 'hbs');
 
 
-//Middleware
+//--Middleware
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
@@ -60,19 +64,23 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-
-//Variables Globales
+//--Variables Globales
 app.use((req,res,next) => {
     //hace uso de la libreria flash para mandar mensajes de confirmacion, u otros mensajes
     app.locals.message = req.flash('message');
     app.locals.success = req.flash('success');
     app.locals.user = req.user;
-    
     next();
 });
 
+//--Acciones programadas por el servidor
+//Ejecutará esta accion una vez al dia -- Horario de ejecucion 00:00 
+cron.schedule('0 0 * * *',()=>{
+  taskCron.eliminaTurnos();
+  console.log('tarea');
+});
 
-//Rutas
+//--Rutas
 app.use(require('./routes/index'));
 app.use(require('./routes/autenticacion'));
 app.use('/turnos',require('./routes/turnos'));
@@ -80,11 +88,14 @@ app.use('/usuarios',require('./routes/usuarios'));
 app.use('/perfil',require('./routes/perfil'));
 
 
-//StaticFiles (public)
+//--StaticFiles (public)
 app.use(express.static(path.join(__dirname,'public')));
 
 
-//Servidores de escucha
+
+
+
+//--Servidores de escucha
 app.listen(app.get('port'), () => {
     console.log('Server on port',app.get('port'));
 });

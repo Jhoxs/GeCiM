@@ -108,7 +108,7 @@ $('.btn-eGTurno').click((e)=>{
       
     swalWithBootstrapButtons.fire({
         title: '¿Estás seguro que deseas eliminar esto?',
-        text: "Esta acción eliminará el turno que ha seleccionado",
+        text: "Esta acción eliminará el turno que ha seleccionado y los turnos de los usuarios",
         icon: 'warning',
         background:'#011126',
         color:'white',
@@ -150,8 +150,8 @@ $('.btn-aTurno').click((e)=>{
         allowOutsideClick: false,
         allowEscapeKey: true,
         showCancelButton: true,
-        confirmButtonText: 'Si, Registralo!',
-        cancelButtonText: ' No, Cancelalo!',
+        confirmButtonText: 'Si, Registrar!',
+        cancelButtonText: ' No, Cancélalo!',
         reverseButtons: true
       }).then((result) => {//el resultado de presionar ok
         if (result.isConfirmed) {
