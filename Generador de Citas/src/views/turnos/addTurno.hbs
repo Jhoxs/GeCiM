@@ -31,7 +31,7 @@
                 {{#if turno.horario}}
                     {{#each turno.horario}}
                         {{#if disponible}}
-                            <a href="/turnos/addTurno/{{id_turno}}+{{ft}}" style="text-decoration: none;">
+                            <a class="btn-aTurno" name="{{id_turno}}+{{ft}}"  style="text-decoration: none;">
                                 <div class="card text-center btn-disp">
                                 <div class="card-body">
                                     <p class="m-3"><b>Inicio del turno: </b>{{inicio_turno}}</p>

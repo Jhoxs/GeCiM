@@ -40,6 +40,22 @@ body{
     padding: 0;
 }
 
+
+/*card perfil*/
+.crd-info{
+  background-color:#011126; 
+  color:white;
+}
+
+.tbl-info{
+  border-radius: 5px;
+  background-color: white;
+  border-color: #011126;
+}
+.table td, table th{
+  border-top:transparent;
+}
+
 /*cards de los turnos*/
 .btn-disp{
   background-color:#011126; 

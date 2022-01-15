@@ -5,7 +5,7 @@
 <div class="container p4">
     <div class="row">
         <div class="col-md-5 mx-auto m-4">
-            <div class="card">
+            <div class="card crd-info">
                 <div class="card-body">
                     <h3 class="card-title text-uppercase text-center">
                         Informacion del turno
@@ -13,7 +13,7 @@
                     <p class="text-center text-uppercase">{{user.rol}} {{user.nombre}}</p>
                     <hr>
                     {{#with turno}}
-                    <table class="table table-hover table-striped">
+                    <table class="table table-hover table-striped tbl-info">
                         <tr>
                             <td><b>Doctor Encargado</b></td>
                             <td>{{nombreDoc}} {{apellidoDoc}}</td>
@@ -35,9 +35,9 @@
                     {{/with}}
                     <hr>
                     <div class="text-center">
-                        <a class="btn btn-danger" href="/turnos/deleteTurno">
+                        <button id="btn-eTurno" class="btn btn-danger">
                             Eliminar Turno
-                        </a>
+                        </button>
                     </div>
                     
                 </div>

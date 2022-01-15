@@ -51,7 +51,6 @@ userCtrl.delete = async(req,res) =>{
                 res.redirect('/usuarios');
             }
         }  
-        res.redirect('/usuarios');
         //DELETE FROM `usuario` WHERE `usuario`.`cedula` = 1709989352
         await pool.query('DELETE FROM usuario WHERE cedula = ?',[id])
         req.flash('success','El usuario se elimino correctamente');

@@ -22,7 +22,10 @@ turnoCtrl.deleteGesTurno = async(req,res) =>{
     if(id.includes('+')){//Elimina el turno en base a su dia
         //separa en dos la ruta
         let newId = id.split('+');
+        //newId[0] contiene el id
+        //newId[1] contiene el dia del turno
         try {
+            //Elimina los turnos de la gestion de turnos (se elimina un turno en especifico)
             await pool.query('DELETE FROM turnos_dias WHERE id_turno = ? AND dia_turno = ?',[newId[0],newId[1]]);
             req.flash('success','El turno se elimino con exito');
             res.redirect('/turnos/gesTurno');
@@ -33,6 +36,9 @@ turnoCtrl.deleteGesTurno = async(req,res) =>{
         }    
     }else{//elimina el turno en base a su id (se eliminan todos los turnos)
         try {
+            //Elimina los turnos de los usuarios que ya estaban registrados
+            await pool.query('DELETE FROM turnos_usuarios WHERE id_turno = ? ',[id]);
+            //Elimina los turnos de la gestion de turnos
             await pool.query('DELETE FROM turnos WHERE id_turno = ? ',[id]);
             req.flash('success','Los turnos se eliminaron con exito');
             res.redirect('/turnos/gesTurno');

@@ -27,6 +27,8 @@
       integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" 
       crossorigin="anonymous"
     />
+    {{!sweetAlert 2}} 
+    {{!<link rel="stylesheet" href="sweetalert2.min.css">}}
 
     {{! Estilos Propios Css }}
     
@@ -40,8 +42,7 @@
       {{>message}}  
       {{!cargamos el cuerpo del main}}
       {{{body}}}
-      
-    
+
     {{! SCRIPTS }}
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -58,5 +59,12 @@
       integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
       crossorigin="anonymous"
     ></script>  
+    {{!SweetAlert Scripts}}
+    <script 
+      src="//cdn.jsdelivr.net/npm/sweetalert2@11"
+    ></script>
+    <script
+      src="/js/sweetAlert.js"
+    ></script>
   </body>
 </html>
