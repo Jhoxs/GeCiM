@@ -2,7 +2,9 @@ const express = require ('express');
 const morgan = require('morgan');
 const path = require ('path');
 const { engine } = require('express-handlebars');
+//Modulo encargado de las sesiones de usuario
 const passport = require('passport');
+//Modulo que permite mostrar notificaciones
 const flash = require('connect-flash');
 const bodyParser = require('body-parser')
 //Modulos para crear sesion en una bd
@@ -22,9 +24,8 @@ require('dotenv').config();
 
 
 //--pruebas
-const pruebas =require('./lib/tester');
-
-pruebas.crearDatos();
+//const pruebas =require('./lib/tester');
+//pruebas.crearDatos();
 
 
 
@@ -78,9 +79,12 @@ app.use((req,res,next) => {
 
 //--Acciones programadas por el servidor
 //Ejecutará esta accion una vez al dia -- Horario de ejecucion 00:00 
+//0 0 * * *
 cron.schedule('0 0 * * *',()=>{
+  console.log('Tarea Programada');
   taskCron.eliminaTurnos();
-  console.log('tarea');
+  taskCron.enviarCorreos();
+  
 });
 
 //--Rutas

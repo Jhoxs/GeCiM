@@ -41,7 +41,7 @@ authCtrl.inicio = async(req, res) => {
         //verifica si el dia de hoy tiene turno
         const fecha = await pool.query('SELECT fecha_consulta FROM turnos_usuarios WHERE fecha_consulta  = ? AND id_usPac = ?',[diaAct,req.user.cedula]);
         if(fecha.length > 0){
-            res.render('inicio',{remember:{msj:'Te recordamos que el dia de hoy tienes tu cita médica'}});
+            res.render('inicio',{remember:{msj:'Te recordamos que el día de hoy tienes tu cita médica'}});
         }else{
             //verifica si el turno es en 3 dias
             const fechaProx = await pool.query('SELECT * FROM turnos_usuarios WHERE fecha_consulta = ? AND id_usPac = ?',[dia2,req.user.cedula]);

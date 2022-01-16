@@ -33,16 +33,5 @@ const enviarCorreo = async(mailOptions) =>{
     }
 }
 
-/*
-const mailOptions = {
-    from: "Gestor de Citas Médicas <gecimpruebas@gmail.com>",
-    to: "joxshernandez@gmail.com",
-    subject:"Este es un email de prueba",
-    text: "Estamos provando como enviar un email"
-}
-*/
-
-
-
 
 module.exports = {enviarCorreo};
