@@ -79,7 +79,7 @@ ALTER TABLE `rol_usuario` DROP FOREIGN KEY `rolUsuario_Fk1`;
 ALTER TABLE `rol_usuario` ADD CONSTRAINT `rolUsuario_Fk1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario`(`cedula`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 
-/*-------tablas en desuso-------*/
+/*-------tablas en desuso-------(IGNORAR)*/ 
 DROP TABLE IF EXISTS funcionalidades;
 CREATE TABLE funcionalidades(
   id_funcionalidad int(4) NOT NULL AUTO_INCREMENT,

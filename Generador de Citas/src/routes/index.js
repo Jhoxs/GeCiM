@@ -4,7 +4,7 @@ const { isNotLoggedIn } = require('../middleware/auth');
 
 //isNotLoggedIn comprueba si alguien no esta logeado
 //landing
-router.get('/' ,isNotLoggedIn, async (req,res)=>{
+router.get('/' ,isNotLoggedIn, async (req,res)=>{    
     res.render('index',{title:'GeCim'});
 });  
 

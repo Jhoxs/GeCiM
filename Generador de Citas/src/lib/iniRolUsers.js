@@ -58,12 +58,11 @@ iniciadorRoles.iniciar = async () => {
       //Insertamos los usuarios creados y les asignamos roles
       pool.query('INSERT INTO usuario SET ?',newAdmin),
       pool.query('INSERT INTO usuario SET ?',newDoc),
-      pool.query('INSERT INTO usuario SET ?',newPac)
+      
     ]);
     //asigna los roles a los usuarios
     await pool.query('INSERT INTO rol_usuario (id_rolUsuario,id_usuario,id_rol) VALUES (null,?,?)',[newAdmin.cedula,'3']);
     await pool.query('INSERT INTO rol_usuario (id_rolUsuario,id_usuario,id_rol) VALUES (null,?,?)',[newDoc.cedula,'2']);
-    await pool.query('INSERT INTO rol_usuario (id_rolUsuario,id_usuario,id_rol) VALUES (null,?,?)',[newPac.cedula,'1']);
     console.log('Se crearon los datos correctamente');
   } catch (error) {
     console.log(error);

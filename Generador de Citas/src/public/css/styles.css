@@ -40,6 +40,9 @@ body{
     padding: 0;
 }
 
+.btn-aTurno:hover{
+  cursor: pointer;
+}
 
 /*card perfil*/
 .crd-info{

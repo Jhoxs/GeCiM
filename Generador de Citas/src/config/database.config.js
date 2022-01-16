@@ -4,7 +4,7 @@ module.exports = {
         conectionLimit: 20,
         host: 'localhost',
         user: 'root',
-        password: '$Joss@Admin1',
+        password: process.env.PASSWORD_DB,
         database: 'gecim'
     }
 }

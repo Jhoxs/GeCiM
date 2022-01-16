@@ -11,19 +11,22 @@ const MySQLStore = require('express-mysql-session')(session);
 //Modulo para agregar taeras al servidor
 const cron = require('node-cron');
 const taskCron = require('./helpers/tareasCron');
-
-const iniciadorRoles =require('./lib/iniRolUsers');
-
 //--llamada a la BD
 //config almacena la informacion de mi base de datos
-const { database } = require('./config');
+const iniciadorRoles =require('./lib/iniRolUsers');
+const { database } = require('./config/database.config');
 const sessionStore = new MySQLStore(database);
+//CREA VARIABLES DE ENTORNO
+require('dotenv').config();
+
 
 
 //--pruebas
 const pruebas =require('./lib/tester');
-const { DateTime } = require('luxon');
-//pruebas.crearDatos();
+
+pruebas.crearDatos();
+
+
 
 //--inicializadores
 const app = express();
