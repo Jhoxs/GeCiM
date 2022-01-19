@@ -64,6 +64,7 @@ iniciadorRoles.iniciar = async () => {
     await pool.query('INSERT INTO rol_usuario (id_rolUsuario,id_usuario,id_rol) VALUES (null,?,?)',[newAdmin.cedula,'3']);
     await pool.query('INSERT INTO rol_usuario (id_rolUsuario,id_usuario,id_rol) VALUES (null,?,?)',[newDoc.cedula,'2']);
     console.log('Se crearon los datos correctamente');
+    
   } catch (error) {
     console.log(error);
   }
