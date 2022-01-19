@@ -1,0 +1,187 @@
+body,html{
+    height: 100%;
+}
+@media only screen and (max-width: 548px){
+    #fnombre,#fapellido,#fnEdA,#fnEdN,#fnBsq{
+        width: 96%;
+    }
+    #fsex{
+        width: 21%;
+    }
+}
+@media only screen and (min-width: 548px){
+    #fnEdN{
+        width: 50%;
+    }
+    #fnEdA{
+        width: 45%;
+    }
+    #fnBsq{
+        width: 96%;
+    }
+}
+
+html {
+    font-family: "Lucida Sans", sans-serif;
+}
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #e4e4e4 ;
+    background-size: contain;
+    overflow: auto;
+
+}
+
+.cont-registro{
+    backdrop-filter: blur(1.5rem);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+}
+.form-registro{
+    border-style:  outset;
+    border-radius: 5px;
+    padding: 30px 25px 40px 25px;
+    background-color: none;
+}
+.form-p-registro{
+    border:0;
+    margin-top: 2px;
+    margin-bottom:0; 
+    color:black;
+    text-align:left;
+    font-size: 16px;
+    
+}
+.frorm-titulo{
+    font-weight: bold;
+    color: black;
+}
+/*cuadros de texto*/
+#fapellido{
+    margin-right: 15px;
+}
+.form-registro input[type="text"],
+.form-registro input[type="email"],
+.form-registro input[type="tel"],
+.form-registro input[type="date"],
+.form-registro input[type="password"],
+.form-registro input[type="submit"],
+.form-registro input[type="time"],
+.form-registro select,
+.form-registro .cDate,
+.form-registro button{
+    border: 0;
+    background: none;
+    margin: 5px auto;
+    padding: 14px 10px;
+    text-align: center;
+    border: 2px solid white;
+    background-color: #011126;
+    color:white;
+    width: 220px;
+    outline: none;
+    border-radius: 10px;
+    transition: 0.25s;
+}
+/*Radio butom*/
+.sexo{
+    border:0;
+    background-color: #E9F2F2;
+    margin: 5px 2px auto 2px;
+    padding: 14px 10px;
+    text-align: center;
+    width: 20%;
+    outline: none;
+    border-radius: 8px;
+    border: 2px solid white;
+}
+.conts{
+    border:0;
+    padding: 10px auto;
+    margin-bottom: 25px;
+    display: block;
+
+}
+
+/*botones*/
+.form-registro button[type="submit"]{
+    background: #F2B705;
+    color: white;
+    cursor: pointer;
+    width: 57%;
+    
+}
+.form-registro button[id="fsex"],
+.form-registro .cDate{
+    width: 25%;
+    cursor:auto;
+}
+
+.form-registro button,
+/*botones de los dias*/
+.form-registro .cDate{
+    background: #E9F2F2;
+    color:black;
+    cursor: pointer;
+    width: 35%;
+}
+
+/*animaciones de los botones*/
+.form-registro input:hover{
+    border-color:#F25C5C;
+}
+.form-registro input:focus{
+    background-color: #E9F2F2;
+    border-color: black;
+    color: black;
+}
+
+.form-registro select:hover{
+    border-color:#F25C5C;
+}
+.form-registro select:focus{
+    background-color: #E9F2F2;
+    border-color: black;
+    color: black;
+}
+
+.form-registro button:hover,
+.form-registro [class="cDate"]:hover{
+    background:#F25C5C;
+    color: white;
+} 
+
+.form-registro button[id="fsex"]:hover,
+.form-registro [class="cDate"]:hover{
+    background: #011126;
+}
+
+.form-registro input[type="radio"]:hover,
+.form-registro input[type="checkbox"]:hover{
+    cursor: pointer;
+}
+
+.form-registro input[id="fnBsq"]:hover{
+    border-color: rgba(75, 74, 74, 0.795);
+}
+.form-registro input[id="fnBsq"]{
+    background-color: #E9F2F2;
+}
+
+.form-registro input[id="fcedula"],
+.form-registro input[id="fcorreo"],
+.form-registro input[id="ftelefono"],
+.form-registro input[id=fpass],
+.form-registro input[id=fpass1],
+.form-registro input[id=fIni],
+.form-registro input[id=fFin],
+.form-registro select
+
+{
+    width: 96%;
+}
