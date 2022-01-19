@@ -6,28 +6,22 @@ const { database } = require('./config/database.config');
 const pool = mysql.createPool(database);
 
 pool.getConnection((err,connection) => {
-    
-    try {
-        if(err){
-            if(err.code === 'PROTOCOL_CONNECTION_LOST'){
-                console.error('La conexxion con la base de dato se ha cerrado');
-            }
-            if(err.code === 'ER_CON_COUNT_ERROR'){
-                console.error('La base de datos tiene demasiadas conexiones');
-            }
-            if(err.code === 'ECONNREFUSED'){
-                console.error('La conexion con la base de datos ha sido rechazada');
-            }
+    if(err){
+        if(err.code === 'PROTOCOL_CONNECTION_LOST'){
+            console.error('La conexxion con la base de dato se ha cerrado');
         }
-    
-        if (connection) connection.release();
-        console.log('La BD se ha conectado');
-        
-        return;
-    } catch (error) {
-        console.log(error);
+        if(err.code === 'ER_CON_COUNT_ERROR'){
+            console.error('La base de datos tiene demasiadas conexiones');
+        }
+        if(err.code === 'ECONNREFUSED'){
+            console.error('La conexion con la base de datos ha sido rechazada');
+        }
     }
+
+    if (connection) connection.release();
+    console.log('La BD se ha conectado');
     
+    return;
 });
 
 //Convertimos a promesas los callbacks
