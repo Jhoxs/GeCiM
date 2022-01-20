@@ -27,8 +27,6 @@ require('dotenv').config();
 //const pruebas =require('./lib/tester');
 //pruebas.crearDatos();
 
-
-
 //--inicializadores
 const app = express();
 require('./lib/passport');

@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
 const {google} =require('googleapis');
-
+require('dotenv').config();
 //funcion encargada de generar los tokens
 const accessToken = async() =>{
     const oAuth2Client = new google.auth.OAuth2(
