@@ -59,9 +59,9 @@ Para poder instalar la app solo se debe seguir los siguentes pasos:
 ---
 ## **Capturas del sitio**
 **Login**
-![Captura No1](resources/otros/imgSitio/Login.png)
+![Captura No1](resources/otros/imgSitio/login.png)
 **Registro**
-![Captura No2](resources/otros/imgSitio/Registro.png)
+![Captura No2](resources/otros/imgSitio/registro.png)
 **Página principal**
 ![Captura No3](resources/otros/imgSitio/PagPrinc.png)
 **Agendar turno**
