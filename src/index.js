@@ -76,6 +76,7 @@ app.use((req,res,next) => {
 });
 
 //--Acciones programadas por el servidor
+//Erecuta cada 20s -> */20 * * * * *
 //Ejecutará esta accion una vez al dia -- Horario de ejecucion 00:00 
 //0 0 * * *
 cron.schedule('0 0 * * *',()=>{
